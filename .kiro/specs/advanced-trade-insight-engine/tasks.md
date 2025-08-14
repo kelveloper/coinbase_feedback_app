@@ -35,8 +35,8 @@
   - Write unit tests for all NLP extraction functions
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
 
-- [ ] 4. Build impact scoring system
-- [ ] 4.1 Implement source weighting engine
+- [x] 4. Build impact scoring system
+- [x] 4.1 Implement source weighting engine
 
   - Create calculate_source_weight() function with channel-specific logic
   - Implement Internal Sales Notes weighting (ARR_impact / 50000)
@@ -46,7 +46,7 @@
   - Write unit tests for all weighting calculations
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
 
-- [ ] 4.2 Create impact score calculator
+- [x] 4.2 Create impact score calculator
 
   - Implement sentiment value mapping (negative=1.5, neutral=0.5, positive=0.1)
   - Create strategic multiplier logic (aligned=2.0, others=1.0)
