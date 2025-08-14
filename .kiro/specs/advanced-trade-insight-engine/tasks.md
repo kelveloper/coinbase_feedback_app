@@ -8,8 +8,8 @@
   - Create config.py with file paths pointing to csv_mock_data/ folder and configuration settings
   - _Requirements: 8.1, 8.2_
 
-- [ ] 2. Implement data processing foundation
-- [ ] 2.1 Create data loading module
+- [x] 2. Implement data processing foundation
+- [x] 2.1 Create data loading module
 
   - Write CSV file loading functions targeting csv_mock_data/ folder files
   - Implement file validation for the four specific CSV files: coinbase_advance_apple_reviews.csv, coinbase_advanceGoogle_Play.csv, coinbase_advance_internal_sales_notes.csv, coinbase_advanced_twitter_mentions.csv
@@ -17,7 +17,7 @@
   - Create unit tests for data loading using the existing mock CSV files
   - _Requirements: 1.1, 1.6_
 
-- [ ] 2.2 Build data normalization module
+- [x] 2.2 Build data normalization module
 
   - Implement column mapping functions (review_text/tweet_text/note_text → feedback_text)
   - Create author handle unification (username/handle/account_name → author_handle)
