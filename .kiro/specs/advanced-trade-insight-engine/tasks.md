@@ -26,7 +26,7 @@
   - _Requirements: 1.2, 1.3, 1.4, 1.5_
 
 - [ ] 3. Develop NLP analysis components
-- [ ] 3.1 Create NLP models module
+- [x] 3.1 Create NLP models module
 
   - Implement get_sentiment() function using pre-enriched CSV data
   - Implement get_theme() function for feedback categorization
