@@ -1,0 +1,51 @@
+customer_id,source,handle,followers,verified,timestamp,sentiment,tweet_text,theme,severity,likes,retweets,reply_count,strategic_goal
+TW-001,Twitter (X),@trader_o6q0uswo,148860,True,2025-06-05T21:08:00,positive,Finally set bracket orders directly—smooth UX.,Performance/Outages,0.29,133,80,25,Trust&Safety
+TW-002,Twitter (X),@trader_jch2vffq,106574,True,2025-07-01T11:49:00,positive,Charts + order book visibility are clutch for scalps.,Tax Docs & Reporting,0.27,157,118,16,Compliance
+TW-003,Twitter (X),@trader_3kzvh4fz,93265,False,2025-06-25T01:43:00,positive,Coinbase Advanced fills were instant during the spike. Nice.,Trading/Execution & Fees,0.34,419,44,1,Growth
+TW-004,Twitter (X),@trader_0iq2fa39,34276,True,2025-05-27T11:43:00,positive,Fee breakdowns on receipts make sense now.,Performance/Outages,0.6,330,21,37,Trust&Safety
+TW-005,Twitter (X),@trader_ac6pe63l,11202,False,2025-02-26T05:59:00,positive,Charts + order book visibility are clutch for scalps.,"Payments, Deposits & Withdrawals",0.56,420,185,25,CX Efficiency
+TW-006,Twitter (X),@trader_yghgk5bw,64441,False,2025-04-30T15:26:00,positive,Coinbase Advanced fills were instant during the spike. Nice.,Product Availability by Region,0.81,245,15,5,Growth
+TW-007,Twitter (X),@trader_px2i9tan,94149,False,2025-07-03T15:22:00,positive,Fee breakdowns on receipts make sense now.,Trading/Execution & Fees,0.83,257,82,24,Growth
+TW-008,Twitter (X),@trader_lh62c9t1,61027,True,2025-03-11T07:42:00,positive,Finally set bracket orders directly—smooth UX.,Onboarding/KYC & Account Holds,0.29,273,188,3,Compliance
+TW-009,Twitter (X),@trader_m44gv3z6,7404,False,2025-08-12T11:36:00,positive,Love the new pairs—liquidity looks solid.,Product Availability by Region,0.55,288,48,31,Growth
+TW-010,Twitter (X),@trader_rdihsa7h,34217,False,2025-03-31T10:03:00,positive,Charts + order book visibility are clutch for scalps.,Trading/Execution & Fees,0.12,300,180,9,Growth
+TW-011,Twitter (X),@trader_8n7odkef,114532,False,2025-06-18T20:20:00,positive,Love the new pairs—liquidity looks solid.,"Security, Fraud & Phishing",0.24,495,143,44,Trust&Safety
+TW-012,Twitter (X),@trader_x3n0kgaz,102665,False,2025-02-22T05:38:00,positive,Charts + order book visibility are clutch for scalps.,Support Experience,0.35,414,156,14,CX Efficiency
+TW-013,Twitter (X),@trader_f0i9g5dz,88024,False,2025-02-16T08:13:00,positive,Coinbase Advanced fills were instant during the spike. Nice.,Tax Docs & Reporting,0.3,34,89,16,Compliance
+TW-014,Twitter (X),@trader_n085rntd,125705,False,2025-07-30T21:14:00,positive,Coinbase Advanced fills were instant during the spike. Nice.,Onboarding/KYC & Account Holds,0.23,37,8,18,Compliance
+TW-015,Twitter (X),@trader_8cgn0t6d,126556,False,2025-02-21T13:41:00,positive,Charts + order book visibility are clutch for scalps.,Wallet & On-chain UX,0.23,455,111,10,Onchain Adoption
+TW-016,Twitter (X),@trader_hgzz0jki,13021,False,2025-07-10T17:53:00,positive,Coinbase Advanced fills were instant during the spike. Nice.,"Security, Fraud & Phishing",0.49,27,92,0,Trust&Safety
+TW-017,Twitter (X),@trader_3wrdhw9r,30289,False,2025-05-26T15:31:00,positive,Coinbase Advanced fills were instant during the spike. Nice.,Wallet & On-chain UX,0.82,135,23,41,Onchain Adoption
+TW-018,Twitter (X),@trader_g5nqjqij,16168,True,2025-08-11T21:06:00,negative,Support replies feel canned—need a human on escalations.,Support Experience,0.17,176,138,26,CX Efficiency
+TW-019,Twitter (X),@trader_cns8y7ui,78352,True,2025-05-26T22:02:00,negative,App stalled right when volatility hit. Brutal.,Performance/Outages,0.5,461,132,36,Trust&Safety
+TW-020,Twitter (X),@trader_8q8ghgbc,114145,True,2025-07-24T04:53:00,negative,App stalled right when volatility hit. Brutal.,"Payments, Deposits & Withdrawals",0.58,163,186,4,CX Efficiency
+TW-021,Twitter (X),@trader_ut4s7azv,110004,True,2025-05-31T04:09:00,negative,Support replies feel canned—need a human on escalations.,Support Experience,0.55,298,194,6,CX Efficiency
+TW-022,Twitter (X),@trader_22555jxu,124016,True,2025-03-30T08:25:00,negative,Gas estimate shocked me on first onchain transfer.,Wallet & On-chain UX,0.22,311,174,44,Onchain Adoption
+TW-023,Twitter (X),@trader_o5ybrjnm,79454,False,2025-04-26T15:54:00,negative,Execution looked worse than my benchmark—need clarity on spread.,Trading/Execution & Fees,0.66,50,58,8,Growth
+TW-024,Twitter (X),@trader_1l0vdp6o,127008,False,2025-05-20T01:32:00,negative,Support replies feel canned—need a human on escalations.,Support Experience,0.73,33,79,45,CX Efficiency
+TW-025,Twitter (X),@trader_e45bg34i,119665,True,2025-05-17T22:12:00,negative,Support replies feel canned—need a human on escalations.,Support Experience,0.32,421,118,32,CX Efficiency
+TW-026,Twitter (X),@trader_yirq8rtm,67816,False,2025-08-09T02:18:00,negative,Execution looked worse than my benchmark—need clarity on spread.,Trading/Execution & Fees,0.12,25,41,36,Growth
+TW-027,Twitter (X),@trader_yjoa21a6,45413,False,2025-02-16T07:16:00,negative,App stalled right when volatility hit. Brutal.,Support Experience,0.59,482,78,45,CX Efficiency
+TW-028,Twitter (X),@trader_64qhkswv,1936,False,2025-08-02T11:35:00,negative,Support replies feel canned—need a human on escalations.,Support Experience,0.62,311,72,19,CX Efficiency
+TW-029,Twitter (X),@trader_c9x5jz6k,39313,False,2025-04-16T01:51:00,negative,Support replies feel canned—need a human on escalations.,Support Experience,0.79,414,153,25,CX Efficiency
+TW-030,Twitter (X),@trader_x9jpnbzu,49795,False,2025-04-11T21:34:00,negative,App stalled right when volatility hit. Brutal.,Onboarding/KYC & Account Holds,0.61,243,171,22,Compliance
+TW-031,Twitter (X),@trader_445gdej3,48000,False,2025-05-10T20:05:00,negative,Why is withdrawal still pending after KYC refresh?,Onboarding/KYC & Account Holds,0.28,114,190,19,Compliance
+TW-032,Twitter (X),@trader_nvqebwuw,123799,True,2025-06-22T03:55:00,negative,Why is withdrawal still pending after KYC refresh?,Onboarding/KYC & Account Holds,0.64,271,76,26,Compliance
+TW-033,Twitter (X),@trader_9m969f5g,21194,False,2025-05-10T20:11:00,negative,App stalled right when volatility hit. Brutal.,Trading/Execution & Fees,0.35,29,1,28,Growth
+TW-034,Twitter (X),@trader_uf22eppp,125157,False,2025-02-15T01:34:00,neutral,"Limit orders only for now, seeing how it behaves.",Trading/Execution & Fees,0.26,191,3,20,Growth
+TW-035,Twitter (X),@trader_ywiymenv,43793,True,2025-02-25T09:18:00,neutral,"Limit orders only for now, seeing how it behaves.",Onboarding/KYC & Account Holds,0.46,266,152,33,Compliance
+TW-036,Twitter (X),@trader_m6mg87oi,34404,True,2025-02-19T18:32:00,neutral,Saw incident on status page; will retry later.,Trading/Execution & Fees,0.24,187,182,41,Growth
+TW-037,Twitter (X),@trader_1wvbd4be,116484,False,2025-03-17T17:16:00,neutral,Saw incident on status page; will retry later.,Wallet & On-chain UX,0.48,78,52,44,Onchain Adoption
+TW-038,Twitter (X),@trader_xxjve3dz,30873,False,2025-03-15T03:31:00,neutral,New listing announced; watching volume.,Product Availability by Region,0.26,102,199,16,Growth
+TW-039,Twitter (X),@trader_zkbrh7la,23341,True,2025-07-10T21:31:00,neutral,"Limit orders only for now, seeing how it behaves.","Security, Fraud & Phishing",0.22,46,199,32,Trust&Safety
+TW-040,Twitter (X),@trader_xq9jb354,94438,False,2025-05-05T13:47:00,neutral,Testing Advanced today; moving from Pro.,Wallet & On-chain UX,0.19,435,194,2,Onchain Adoption
+TW-041,Twitter (X),@trader_l68j0nme,104933,False,2025-04-24T12:44:00,neutral,"Limit orders only for now, seeing how it behaves.",Trading/Execution & Fees,0.78,409,107,41,Growth
+TW-042,Twitter (X),@trader_zc7fov2y,47526,False,2025-05-22T11:39:00,neutral,Testing Advanced today; moving from Pro.,Trading/Execution & Fees,0.12,350,186,8,Growth
+TW-043,Twitter (X),@trader_5pcxa5s0,148124,True,2025-08-04T10:33:00,neutral,Saw incident on status page; will retry later.,"Payments, Deposits & Withdrawals",0.52,358,158,6,CX Efficiency
+TW-044,Twitter (X),@trader_myn4u9bx,41147,False,2025-06-14T15:55:00,neutral,"Limit orders only for now, seeing how it behaves.",Tax Docs & Reporting,0.23,384,125,20,Compliance
+TW-045,Twitter (X),@trader_bixoiq2q,130677,False,2025-05-05T03:31:00,neutral,New listing announced; watching volume.,Wallet & On-chain UX,0.7,9,26,25,Onchain Adoption
+TW-046,Twitter (X),@trader_t328w6ux,119602,False,2025-05-18T01:52:00,neutral,Testing Advanced today; moving from Pro.,Performance/Outages,0.28,232,84,35,Trust&Safety
+TW-047,Twitter (X),@trader_rxze1hm3,76551,False,2025-06-27T11:44:00,neutral,Comparing fees vs. my other venue tonight.,Trading/Execution & Fees,0.19,459,42,31,Growth
+TW-048,Twitter (X),@trader_jhe4h3gm,108660,True,2025-07-26T21:37:00,neutral,Saw incident on status page; will retry later.,"Payments, Deposits & Withdrawals",0.2,456,115,29,CX Efficiency
+TW-049,Twitter (X),@trader_ertb74rs,46462,False,2025-07-12T05:46:00,neutral,Comparing fees vs. my other venue tonight.,Trading/Execution & Fees,0.75,53,99,42,Growth
+TW-050,Twitter (X),@trader_5sn961j8,77125,False,2025-03-20T04:26:00,neutral,Comparing fees vs. my other venue tonight.,Trading/Execution & Fees,0.58,453,191,32,Growth

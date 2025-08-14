@@ -1,0 +1,51 @@
+customer_id,source,username,region,device,app_version,timestamp,rating,sentiment,review_text,theme,severity,strategic_goal,helpful_votes
+IOS-001,iOS App Store,ios_0ifd0tvb,US-NY,iPhone 13,11.2.1,2025-06-23T19:01:00,4,positive,Loving Advanced Trade—depth charts and order book are spot on.,Onboarding/KYC & Account Holds,0.28,Compliance,17
+IOS-002,iOS App Store,ios_zmf8mdd4,CA,iPhone 14,11.2.0,2025-06-11T17:07:00,5,positive,Loving Advanced Trade—depth charts and order book are spot on.,Trading/Execution & Fees,0.54,Growth,23
+IOS-003,iOS App Store,ios_zbikcidk,AU,iPhone 14,11.2.1,2025-05-19T11:13:00,5,positive,Alerting + TradingView charts make decisions faster for me.,Support Experience,0.59,CX Efficiency,34
+IOS-004,iOS App Store,ios_qj7yhl1c,BR,iPhone 12,11.3.0,2025-05-27T08:04:00,4,positive,Advanced UI is clean; limit and stop orders work exactly as expected.,Trading/Execution & Fees,0.27,Growth,25
+IOS-005,iOS App Store,ios_jiujv6oh,US-TX,iPad Pro,11.3.1,2025-03-09T01:55:00,4,positive,Great upgrade from Pro; same power inside the main app.,Trading/Execution & Fees,0.6,Growth,38
+IOS-006,iOS App Store,ios_n9t84azy,EU-ES,iPhone 14,11.3.0,2025-03-14T09:27:00,4,positive,Loving Advanced Trade—depth charts and order book are spot on.,Product Availability by Region,0.1,Growth,32
+IOS-007,iOS App Store,ios_65kxvf1t,JP,iPad Pro,11.2.0,2025-07-17T10:31:00,4,positive,Advanced UI is clean; limit and stop orders work exactly as expected.,Performance/Outages,0.84,Trust&Safety,15
+IOS-008,iOS App Store,ios_58drc11e,EU-FR,iPad Pro,11.2.1,2025-04-22T16:55:00,5,positive,Loving Advanced Trade—depth charts and order book are spot on.,Support Experience,0.84,CX Efficiency,45
+IOS-009,iOS App Store,ios_oyn6qica,EU-ES,iPhone 13,11.4.0,2025-04-11T00:04:00,4,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.15,Growth,21
+IOS-010,iOS App Store,ios_iyhe7ur2,JP,iPhone 15,11.2.1,2025-03-10T03:42:00,5,positive,Loving Advanced Trade—depth charts and order book are spot on.,Performance/Outages,0.44,Trust&Safety,46
+IOS-011,iOS App Store,ios_c02dgtfg,EU-FR,iPhone 13,11.2.0,2025-06-07T17:06:00,4,positive,Loving Advanced Trade—depth charts and order book are spot on.,"Payments, Deposits & Withdrawals",0.88,CX Efficiency,10
+IOS-012,iOS App Store,ios_r56fao72,US-IL,iPhone 15,11.4.0,2025-08-02T22:31:00,4,positive,Great upgrade from Pro; same power inside the main app.,Tax Docs & Reporting,0.34,Compliance,37
+IOS-013,iOS App Store,ios_0cvs4f8c,US-TX,iPhone 12,11.4.0,2025-03-03T21:55:00,4,positive,Alerting + TradingView charts make decisions faster for me.,Onboarding/KYC & Account Holds,0.2,Compliance,15
+IOS-014,iOS App Store,ios_wpvs7hzi,EU-DE,iPhone 13,11.3.0,2025-06-11T10:59:00,4,positive,Alerting + TradingView charts make decisions faster for me.,Onboarding/KYC & Account Holds,0.47,Compliance,6
+IOS-015,iOS App Store,ios_hj755nf4,SG,iPhone 14,11.4.0,2025-07-31T16:00:00,5,positive,Loving Advanced Trade—depth charts and order book are spot on.,Performance/Outages,0.85,Trust&Safety,16
+IOS-016,iOS App Store,ios_0fkhmy4s,US-IL,iPhone 12,11.2.0,2025-07-26T13:53:00,5,positive,Loving Advanced Trade—depth charts and order book are spot on.,"Payments, Deposits & Withdrawals",0.1,CX Efficiency,40
+IOS-017,iOS App Store,ios_fpzue8yf,US-CA,iPhone 14,11.4.0,2025-07-05T04:27:00,4,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.35,Growth,22
+IOS-018,iOS App Store,ios_yymu5907,US-FL,iPhone 13,11.2.1,2025-05-30T00:11:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.74,Trust&Safety,17
+IOS-019,iOS App Store,ios_2d54i3qk,JP,iPhone 13,11.2.1,2025-02-20T21:12:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.32,Trust&Safety,49
+IOS-020,iOS App Store,ios_msy4la5j,CA,iPhone 14,11.2.0,2025-03-13T19:27:00,2,negative,Account recheck blocked withdrawals longer than expected.,Onboarding/KYC & Account Holds,0.45,Compliance,7
+IOS-021,iOS App Store,ios_6gbps3y7,SG,iPhone SE,11.2.1,2025-05-18T13:04:00,2,negative,Support bounced me between channels; no clear resolution path.,Support Experience,0.63,CX Efficiency,46
+IOS-022,iOS App Store,ios_sylztgxn,SG,iPhone 13,11.4.0,2025-07-09T09:25:00,2,negative,Account recheck blocked withdrawals longer than expected.,Onboarding/KYC & Account Holds,0.33,Compliance,50
+IOS-023,iOS App Store,ios_vlpys280,AU,iPhone 12,11.3.0,2025-06-25T21:40:00,1,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.75,Onchain Adoption,43
+IOS-024,iOS App Store,ios_ihair4co,AU,iPad Pro,11.2.1,2025-08-11T12:31:00,1,negative,Account recheck blocked withdrawals longer than expected.,Onboarding/KYC & Account Holds,0.22,Compliance,48
+IOS-025,iOS App Store,ios_2h2zqu7e,US-TX,iPhone 15,11.4.0,2025-07-07T19:20:00,2,negative,Price execution feels off vs reference; need clearer spread breakdown.,Trading/Execution & Fees,0.76,Growth,28
+IOS-026,iOS App Store,ios_0rjiw1sw,US-IL,iPhone 15,11.2.0,2025-04-28T07:17:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.81,Trust&Safety,8
+IOS-027,iOS App Store,ios_iyzcotoh,EU-DE,iPhone 15,11.4.0,2025-08-11T00:54:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.1,Trust&Safety,19
+IOS-028,iOS App Store,ios_48p0tvhh,EU-DE,iPhone 15,11.2.0,2025-05-24T10:42:00,1,negative,Support bounced me between channels; no clear resolution path.,Support Experience,0.77,CX Efficiency,39
+IOS-029,iOS App Store,ios_aouaxeqb,EU-DE,iPhone 14,11.2.1,2025-06-10T10:21:00,2,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.7,Onchain Adoption,16
+IOS-030,iOS App Store,ios_q0b8ic8b,US-CA,iPhone 13,11.2.1,2025-02-19T19:09:00,1,negative,Price execution feels off vs reference; need clearer spread breakdown.,Trading/Execution & Fees,0.48,Growth,36
+IOS-031,iOS App Store,ios_qjnv8z2f,US-IL,iPhone 12,11.4.0,2025-02-20T09:36:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.85,Trust&Safety,4
+IOS-032,iOS App Store,ios_ywd14ve9,JP,iPhone 12,11.3.0,2025-06-30T13:42:00,1,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.5,Onchain Adoption,0
+IOS-033,iOS App Store,ios_3d8w3zp0,AU,iPhone 14,11.4.0,2025-07-01T15:29:00,2,negative,Support bounced me between channels; no clear resolution path.,Support Experience,0.36,CX Efficiency,5
+IOS-034,iOS App Store,ios_iqvnb4gh,JP,iPhone 14,11.3.0,2025-04-26T19:44:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Tax Docs & Reporting,0.51,Compliance,5
+IOS-035,iOS App Store,ios_r1yxr2dh,SG,iPhone 13,11.3.0,2025-08-02T18:23:00,3,neutral,Using limit orders mainly; haven’t tried advanced triggers yet.,Product Availability by Region,0.44,Growth,21
+IOS-036,iOS App Store,ios_jjeget1g,US-FL,iPhone SE,11.3.1,2025-04-25T23:37:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Tax Docs & Reporting,0.77,Compliance,14
+IOS-037,iOS App Store,ios_kzebbk7w,JP,iPhone 15,11.2.0,2025-02-17T18:18:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Trading/Execution & Fees,0.45,Growth,3
+IOS-038,iOS App Store,ios_ecruyf38,US-NY,iPhone 13,11.2.0,2025-07-06T13:38:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Tax Docs & Reporting,0.46,Compliance,19
+IOS-039,iOS App Store,ios_kwv08hhx,US-TX,iPhone 13,11.2.1,2025-07-05T02:10:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Product Availability by Region,0.46,Growth,30
+IOS-040,iOS App Store,ios_izzqy72w,AU,iPhone 13,11.3.1,2025-03-15T17:14:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Onboarding/KYC & Account Holds,0.76,Compliance,3
+IOS-041,iOS App Store,ios_v37pqkoj,EU-ES,iPhone 15,11.3.1,2025-03-06T19:02:00,3,neutral,Using limit orders mainly; haven’t tried advanced triggers yet.,Wallet & On-chain UX,0.58,Onchain Adoption,5
+IOS-042,iOS App Store,ios_9yjb1qx6,US-TX,iPad Pro,11.3.1,2025-07-26T15:05:00,3,neutral,Using limit orders mainly; haven’t tried advanced triggers yet.,Onboarding/KYC & Account Holds,0.43,Compliance,42
+IOS-043,iOS App Store,ios_lyk83tql,UK,iPhone 12,11.3.1,2025-06-25T00:42:00,3,neutral,Switched to Advanced Trade after Pro sunset; still exploring features.,Trading/Execution & Fees,0.14,Growth,23
+IOS-044,iOS App Store,ios_w1ht7pze,AU,iPad Pro,11.2.1,2025-03-26T09:35:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Tax Docs & Reporting,0.17,Compliance,29
+IOS-045,iOS App Store,ios_rzsj49it,EU-DE,iPhone 13,11.4.0,2025-06-24T23:56:00,3,neutral,Switched to Advanced Trade after Pro sunset; still exploring features.,Trading/Execution & Fees,0.32,Growth,21
+IOS-046,iOS App Store,ios_3kkv9rft,UK,iPhone 14,11.4.0,2025-07-03T12:29:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Wallet & On-chain UX,0.88,Onchain Adoption,36
+IOS-047,iOS App Store,ios_i1b0z3nx,BR,iPhone SE,11.2.1,2025-06-20T01:08:00,3,neutral,Charts load fine; volume varies by pair and time of day.,Performance/Outages,0.8,Trust&Safety,6
+IOS-048,iOS App Store,ios_af58c2jw,EU-DE,iPhone SE,11.2.0,2025-05-09T21:54:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Tax Docs & Reporting,0.6,Compliance,34
+IOS-049,iOS App Store,ios_iykid91z,US-NY,iPhone 15,11.2.1,2025-08-10T09:57:00,3,neutral,Switched to Advanced Trade after Pro sunset; still exploring features.,"Payments, Deposits & Withdrawals",0.36,CX Efficiency,18
+IOS-050,iOS App Store,ios_pioyggvn,AU,iPhone 13,11.3.1,2025-07-13T04:14:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,"Security, Fraud & Phishing",0.47,Trust&Safety,29

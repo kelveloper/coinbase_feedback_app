@@ -1,0 +1,51 @@
+customer_id,source,username,region,device,app_version,timestamp,rating,sentiment,review_text,theme,severity,strategic_goal,helpful_votes
+GP-001,Google Play Store,and_yfpmvxpj,BR,Pixel 8,11.2.1,2025-05-23T15:06:00,4,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.56,Growth,18
+GP-002,Google Play Store,and_a3oa5296,SG,Galaxy S22,11.3.0,2025-04-13T19:51:00,5,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.61,Growth,16
+GP-003,Google Play Store,and_6xlpu0dk,SG,Galaxy S22,11.2.1,2025-04-06T04:50:00,5,positive,Advanced UI is clean; limit and stop orders work exactly as expected.,"Payments, Deposits & Withdrawals",0.76,CX Efficiency,30
+GP-004,Google Play Store,and_0me8f840,EU-DE,Nothing Phone 2,11.4.0,2025-05-18T02:50:00,5,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.31,Growth,29
+GP-005,Google Play Store,and_yyv37dia,IN,Galaxy S23,11.3.0,2025-07-20T07:41:00,4,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.83,Growth,41
+GP-006,Google Play Store,and_f8krd5eq,AU,OnePlus 11,11.4.0,2025-06-01T18:47:00,4,positive,Great upgrade from Pro; same power inside the main app.,"Payments, Deposits & Withdrawals",0.62,CX Efficiency,39
+GP-007,Google Play Store,and_bnp84dyt,AU,Pixel 8,11.2.0,2025-05-26T08:12:00,4,positive,Great upgrade from Pro; same power inside the main app.,Wallet & On-chain UX,0.17,Onchain Adoption,41
+GP-008,Google Play Store,and_bm92h3tv,BR,Nothing Phone 2,11.2.1,2025-05-09T04:50:00,4,positive,Alerting + TradingView charts make decisions faster for me.,Onboarding/KYC & Account Holds,0.79,Compliance,8
+GP-009,Google Play Store,and_2d5em2va,US-IL,Pixel 6,11.2.1,2025-06-01T16:07:00,4,positive,Alerting + TradingView charts make decisions faster for me.,Wallet & On-chain UX,0.46,Onchain Adoption,32
+GP-010,Google Play Store,and_qhw06xkx,US-CA,Pixel 6,11.3.1,2025-05-27T13:43:00,4,positive,Alerting + TradingView charts make decisions faster for me.,"Payments, Deposits & Withdrawals",0.67,CX Efficiency,4
+GP-011,Google Play Store,and_vcjwtl9t,EU-FR,Galaxy S23,11.4.0,2025-06-04T03:50:00,4,positive,Loving Advanced Trade—depth charts and order book are spot on.,"Security, Fraud & Phishing",0.44,Trust&Safety,26
+GP-012,Google Play Store,and_3o0llj8y,EU-FR,Pixel 6,11.2.0,2025-03-07T02:27:00,4,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.75,Growth,3
+GP-013,Google Play Store,and_uyo57p6b,US-IL,Galaxy S23,11.3.0,2025-05-15T03:36:00,4,positive,Alerting + TradingView charts make decisions faster for me.,Performance/Outages,0.63,Trust&Safety,6
+GP-014,Google Play Store,and_4n1u3493,CA,OnePlus 11,11.4.0,2025-02-20T19:59:00,5,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.24,Growth,21
+GP-015,Google Play Store,and_a5uofwb0,US-FL,Galaxy S22,11.3.1,2025-06-10T10:10:00,5,positive,Fast fills on BTC/ETH; fees are clear on the receipt.,Trading/Execution & Fees,0.68,Growth,38
+GP-016,Google Play Store,and_f1bcppvo,US-FL,Nothing Phone 2,11.4.0,2025-03-15T11:27:00,4,positive,Loving Advanced Trade—depth charts and order book are spot on.,Onboarding/KYC & Account Holds,0.64,Compliance,31
+GP-017,Google Play Store,and_bovakhej,UK,Pixel 6,11.2.0,2025-06-21T23:27:00,4,positive,Alerting + TradingView charts make decisions faster for me.,Wallet & On-chain UX,0.4,Onchain Adoption,32
+GP-018,Google Play Store,and_43c5ba75,CA,Galaxy S22,11.4.0,2025-05-28T22:40:00,2,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.19,Onchain Adoption,20
+GP-019,Google Play Store,and_2w37d4iv,EU-ES,Pixel 6,11.3.1,2025-05-04T23:21:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.72,Trust&Safety,32
+GP-020,Google Play Store,and_tg1m8xfd,US-IL,Pixel 7,11.2.1,2025-07-18T04:48:00,1,negative,Price execution feels off vs reference; need clearer spread breakdown.,Trading/Execution & Fees,0.86,Growth,29
+GP-021,Google Play Store,and_1q7uww5w,US-TX,Galaxy S22,11.2.0,2025-06-14T14:40:00,2,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.57,Onchain Adoption,32
+GP-022,Google Play Store,and_lqc3c54w,EU-ES,Galaxy S22,11.3.1,2025-07-12T17:50:00,2,negative,Price execution feels off vs reference; need clearer spread breakdown.,Trading/Execution & Fees,0.83,Growth,41
+GP-023,Google Play Store,and_lrfcd6mz,EU-ES,OnePlus 11,11.2.1,2025-02-24T07:45:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.52,Trust&Safety,10
+GP-024,Google Play Store,and_nkomv2xc,US-NY,Galaxy S23,11.3.1,2025-04-27T08:46:00,2,negative,Account recheck blocked withdrawals longer than expected.,Onboarding/KYC & Account Holds,0.17,Compliance,22
+GP-025,Google Play Store,and_8zov7ln2,BR,Pixel 7,11.4.0,2025-03-09T20:42:00,2,negative,Account recheck blocked withdrawals longer than expected.,Onboarding/KYC & Account Holds,0.11,Compliance,11
+GP-026,Google Play Store,and_m1g9fk2s,EU-ES,Nothing Phone 2,11.4.0,2025-02-23T21:21:00,2,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.22,Trust&Safety,44
+GP-027,Google Play Store,and_3fpoyipk,SG,Nothing Phone 2,11.3.1,2025-04-14T17:15:00,2,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.82,Onchain Adoption,23
+GP-028,Google Play Store,and_9qkns832,US-TX,Nothing Phone 2,11.3.0,2025-02-27T20:30:00,1,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.67,Onchain Adoption,7
+GP-029,Google Play Store,and_dfqs3d63,IN,Pixel 8,11.2.0,2025-05-31T01:25:00,1,negative,Account recheck blocked withdrawals longer than expected.,Onboarding/KYC & Account Holds,0.41,Compliance,23
+GP-030,Google Play Store,and_b74x2ek3,SG,Nothing Phone 2,11.2.1,2025-08-13T15:28:00,1,negative,App froze during a volatile move; missed my entry.,Performance/Outages,0.12,Trust&Safety,9
+GP-031,Google Play Store,and_7vp1ieix,CA,Galaxy S22,11.2.0,2025-03-14T15:38:00,1,negative,Gas/fee estimates confusing for first on-chain transfer.,Wallet & On-chain UX,0.67,Onchain Adoption,27
+GP-032,Google Play Store,and_wioxd9cs,EU-ES,Nothing Phone 2,11.4.0,2025-07-05T00:24:00,1,negative,Price execution feels off vs reference; need clearer spread breakdown.,Trading/Execution & Fees,0.61,Growth,16
+GP-033,Google Play Store,and_mcixdu1e,UK,Galaxy S23,11.3.0,2025-07-28T05:53:00,2,negative,Price execution feels off vs reference; need clearer spread breakdown.,Trading/Execution & Fees,0.61,Growth,4
+GP-034,Google Play Store,and_bh25llo3,EU-FR,Pixel 8,11.2.0,2025-07-29T06:18:00,3,neutral,Charts load fine; volume varies by pair and time of day.,Performance/Outages,0.79,Trust&Safety,17
+GP-035,Google Play Store,and_pop8mgyn,JP,Galaxy S23,11.3.0,2025-03-07T23:27:00,3,neutral,Switched to Advanced Trade after Pro sunset; still exploring features.,"Security, Fraud & Phishing",0.58,Trust&Safety,34
+GP-036,Google Play Store,and_dlkqzfpq,SG,Nothing Phone 2,11.3.0,2025-07-21T13:17:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,"Security, Fraud & Phishing",0.64,Trust&Safety,23
+GP-037,Google Play Store,and_8fv2bc2n,EU-DE,Galaxy S23,11.2.0,2025-07-18T04:43:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Trading/Execution & Fees,0.4,Growth,36
+GP-038,Google Play Store,and_nlk8ags6,US-NY,Pixel 8,11.3.0,2025-08-13T14:13:00,3,neutral,Using limit orders mainly; haven’t tried advanced triggers yet.,Performance/Outages,0.26,Trust&Safety,4
+GP-039,Google Play Store,and_gz9389yz,EU-ES,Galaxy S23,11.3.0,2025-05-01T05:45:00,3,neutral,Charts load fine; volume varies by pair and time of day.,Performance/Outages,0.51,Trust&Safety,12
+GP-040,Google Play Store,and_2atn2twd,US-IL,Galaxy S22,11.3.1,2025-06-28T13:49:00,3,neutral,Using limit orders mainly; haven’t tried advanced triggers yet.,Support Experience,0.2,CX Efficiency,41
+GP-041,Google Play Store,and_qse3tv1e,EU-ES,Nothing Phone 2,11.2.0,2025-03-17T16:09:00,3,neutral,Switched to Advanced Trade after Pro sunset; still exploring features.,Tax Docs & Reporting,0.23,Compliance,22
+GP-042,Google Play Store,and_4jwtekts,US-TX,Galaxy S23,11.4.0,2025-03-25T05:42:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Wallet & On-chain UX,0.76,Onchain Adoption,5
+GP-043,Google Play Store,and_x1oxrwk8,EU-FR,Pixel 7,11.3.1,2025-05-01T14:04:00,3,neutral,Switched to Advanced Trade after Pro sunset; still exploring features.,Wallet & On-chain UX,0.45,Onchain Adoption,29
+GP-044,Google Play Store,and_vlz049en,EU-ES,Pixel 6,11.3.0,2025-04-16T14:07:00,3,neutral,Using limit orders mainly; haven’t tried advanced triggers yet.,"Security, Fraud & Phishing",0.3,Trust&Safety,3
+GP-045,Google Play Store,and_5p8637zg,US-TX,Galaxy S22,11.4.0,2025-06-13T15:56:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Product Availability by Region,0.12,Growth,32
+GP-046,Google Play Store,and_8hmbr5xq,EU-ES,Pixel 6,11.2.0,2025-06-04T04:56:00,3,neutral,Charts load fine; volume varies by pair and time of day.,Performance/Outages,0.71,Trust&Safety,2
+GP-047,Google Play Store,and_bunknqt3,CA,OnePlus 11,11.4.0,2025-03-16T04:06:00,3,neutral,Charts load fine; volume varies by pair and time of day.,Performance/Outages,0.74,Trust&Safety,35
+GP-048,Google Play Store,and_hssbelrq,CA,Galaxy S23,11.2.1,2025-05-08T19:20:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Trading/Execution & Fees,0.89,Growth,37
+GP-049,Google Play Store,and_3tzk3ny9,CA,Pixel 8,11.2.0,2025-07-16T15:16:00,3,neutral,Saw new pairs listed; undecided if I’ll trade them.,Performance/Outages,0.57,Trust&Safety,33
+GP-050,Google Play Store,and_fyb8dalf,SG,Pixel 7,11.3.1,2025-06-22T19:58:00,3,neutral,Using bank transfer; settlement times are predictable so far.,Product Availability by Region,0.66,Growth,13
