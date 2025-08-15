@@ -1,16 +1,16 @@
 """
 Unit tests for dashboard charts module.
 
-Tests cover theme impact charts, sentiment distribution, time trends, and source comparisons.
-Requirements: 6.2
+Tests cover chart creation, data visualization, and interactive chart
+functionality for the dashboard.
 """
 
 import unittest
 import pandas as pd
-import plotly.graph_objects as go
-from unittest.mock import patch, MagicMock
+import numpy as np
 import sys
 import os
+from unittest.mock import patch, MagicMock
 
 # Add src directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
@@ -18,327 +18,503 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 from dashboard.charts import (
     create_theme_impact_chart,
     create_sentiment_distribution_chart,
+    create_source_channel_chart,
     create_time_trend_chart,
-    create_source_impact_chart,
-    display_chart_with_error_handling,
-    create_comprehensive_dashboard_charts
+    create_strategic_goal_chart,
+    create_comprehensive_dashboard_charts,
+    prepare_chart_data,
+    format_chart_colors
 )
 
 
-class TestDashboardCharts(unittest.TestCase):
-    """Test cases for dashboard charts functionality."""
+class TestCreateThemeImpactChart(unittest.TestCase):
+    """Test cases for create_theme_impact_chart function."""
     
     def setUp(self):
-        """Set up test data for chart tests."""
+        """Set up test data."""
         self.sample_data = pd.DataFrame({
-            'customer_id': ['C001', 'C002', 'C003', 'C004', 'C005', 'C006'],
-            'source_channel': ['iOS App Store', 'Twitter', 'Internal Sales', 'Google Play', 'Twitter', 'iOS App Store'],
-            'source': ['iOS App Store', 'Twitter', 'Internal Sales', 'Google Play', 'Twitter', 'iOS App Store'],
-            'feedback_text': [
-                'Great app but needs better performance',
-                'Love the new features!',
-                'Customer wants advanced trading tools',
-                'App crashes frequently',
-                'Excellent customer service',
-                'Good overall experience'
-            ],
-            'sentiment': ['negative', 'positive', 'neutral', 'negative', 'positive', 'positive'],
-            'theme': ['Performance', 'Features', 'Trading Tools', 'Performance', 'Support', 'Features'],
-            'impact_score': [2.5, 1.2, 4.8, 3.1, 0.8, 1.5],
-            'timestamp': pd.to_datetime([
-                '2024-01-01', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-06'
-            ])
-        })
-        
-        self.empty_data = pd.DataFrame()
-        
-        self.minimal_data = pd.DataFrame({
-            'theme': ['Performance'],
-            'impact_score': [1.0]
+            'theme': ['Performance', 'Features', 'Support', 'Performance', 'UI/UX', 'Features'],
+            'impact_score': [8.5, 6.2, 4.8, 7.1, 5.3, 5.9],
+            'sentiment': ['negative', 'positive', 'neutral', 'negative', 'positive', 'positive']
         })
     
-    def test_create_theme_impact_chart_with_data(self):
-        """Test theme impact chart creation with valid data."""
-        fig = create_theme_impact_chart(self.sample_data)
-        
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
-        
-        # Verify chart has data
-        self.assertTrue(len(fig.data) > 0)
-        
-        # Verify chart type is bar
-        self.assertEqual(fig.data[0].type, 'bar')
-        
-        # Verify orientation is horizontal
-        self.assertEqual(fig.data[0].orientation, 'h')
-    
-    def test_create_theme_impact_chart_empty_data(self):
-        """Test theme impact chart creation with empty data."""
-        fig = create_theme_impact_chart(self.empty_data)
-        
-        # Should return None for empty data
-        self.assertIsNone(fig)
-    
-    def test_create_theme_impact_chart_missing_columns(self):
-        """Test theme impact chart creation with missing required columns."""
-        incomplete_data = pd.DataFrame({
-            'theme': ['Performance', 'Features'],
-            # Missing impact_score column
-        })
-        
-        fig = create_theme_impact_chart(incomplete_data)
-        
-        # Should return None for missing columns
-        self.assertIsNone(fig)
-    
-    def test_create_sentiment_distribution_chart_with_data(self):
-        """Test sentiment distribution chart creation with valid data."""
-        fig = create_sentiment_distribution_chart(self.sample_data)
-        
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
-        
-        # Verify chart has data
-        self.assertTrue(len(fig.data) > 0)
-        
-        # Verify chart type is pie
-        self.assertEqual(fig.data[0].type, 'pie')
-        
-        # Verify all sentiments are represented
-        labels = fig.data[0].labels
-        self.assertIn('positive', labels)
-        self.assertIn('negative', labels)
-    
-    def test_create_sentiment_distribution_chart_empty_data(self):
-        """Test sentiment distribution chart creation with empty data."""
-        fig = create_sentiment_distribution_chart(self.empty_data)
-        
-        # Should return None for empty data
-        self.assertIsNone(fig)
-    
-    def test_create_sentiment_distribution_chart_missing_column(self):
-        """Test sentiment distribution chart creation with missing sentiment column."""
-        incomplete_data = pd.DataFrame({
-            'theme': ['Performance', 'Features'],
-            'impact_score': [1.0, 2.0]
-            # Missing sentiment column
-        })
-        
-        fig = create_sentiment_distribution_chart(incomplete_data)
-        
-        # Should return None for missing column
-        self.assertIsNone(fig)
-    
-    def test_create_time_trend_chart_with_data(self):
-        """Test time trend chart creation with valid data."""
-        fig = create_time_trend_chart(self.sample_data)
-        
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
-        
-        # Verify chart has data
-        self.assertTrue(len(fig.data) > 0)
-        
-        # Should have multiple traces for different sentiments
-        self.assertGreaterEqual(len(fig.data), 3)  # At least 3 sentiment traces
-    
-    def test_create_time_trend_chart_empty_data(self):
-        """Test time trend chart creation with empty data."""
-        fig = create_time_trend_chart(self.empty_data)
-        
-        # Should return None for empty data
-        self.assertIsNone(fig)
-    
-    def test_create_time_trend_chart_missing_timestamp(self):
-        """Test time trend chart creation with missing timestamp column."""
-        incomplete_data = pd.DataFrame({
-            'sentiment': ['positive', 'negative'],
-            'theme': ['Performance', 'Features']
-            # Missing timestamp column
-        })
-        
-        fig = create_time_trend_chart(incomplete_data)
-        
-        # Should return None for missing timestamp
-        self.assertIsNone(fig)
-    
-    def test_create_time_trend_chart_invalid_timestamps(self):
-        """Test time trend chart creation with invalid timestamp data."""
-        invalid_timestamp_data = pd.DataFrame({
-            'timestamp': ['invalid_date', 'another_invalid'],
-            'sentiment': ['positive', 'negative']
-        })
-        
-        fig = create_time_trend_chart(invalid_timestamp_data)
-        
-        # Should return None for invalid timestamps
-        self.assertIsNone(fig)
-    
-    def test_create_source_impact_chart_with_source_channel(self):
-        """Test source impact chart creation with source_channel column."""
-        fig = create_source_impact_chart(self.sample_data)
-        
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
-        
-        # Verify chart has data
-        self.assertTrue(len(fig.data) > 0)
-        
-        # Verify chart type is bar
-        self.assertEqual(fig.data[0].type, 'bar')
-        
-        # Verify orientation is horizontal
-        self.assertEqual(fig.data[0].orientation, 'h')
-    
-    def test_create_source_impact_chart_with_source_column(self):
-        """Test source impact chart creation with source column (fallback)."""
-        # Remove source_channel column to test fallback
-        data_with_source = self.sample_data.drop(columns=['source_channel'])
-        
-        fig = create_source_impact_chart(data_with_source)
-        
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
-        
-        # Verify chart has data
-        self.assertTrue(len(fig.data) > 0)
-    
-    def test_create_source_impact_chart_empty_data(self):
-        """Test source impact chart creation with empty data."""
-        fig = create_source_impact_chart(self.empty_data)
-        
-        # Should return None for empty data
-        self.assertIsNone(fig)
-    
-    def test_create_source_impact_chart_missing_columns(self):
-        """Test source impact chart creation with missing required columns."""
-        incomplete_data = pd.DataFrame({
-            'theme': ['Performance', 'Features']
-            # Missing source and impact_score columns
-        })
-        
-        fig = create_source_impact_chart(incomplete_data)
-        
-        # Should return None for missing columns
-        self.assertIsNone(fig)
-    
+    @patch('dashboard.charts.px.bar')
     @patch('dashboard.charts.st.plotly_chart')
-    def test_display_chart_with_error_handling_success(self, mock_plotly_chart):
-        """Test successful chart display with error handling."""
-        # Mock chart function that returns a valid figure
-        def mock_chart_func(df):
-            return go.Figure()
+    def test_create_theme_impact_chart_basic(self, mock_plotly_chart, mock_px_bar):
+        """Test basic theme impact chart creation."""
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_bar.return_value = mock_fig
         
-        result = display_chart_with_error_handling(
-            mock_chart_func, self.sample_data, "Test Chart"
-        )
+        result = create_theme_impact_chart(self.sample_data)
         
-        # Verify success
-        self.assertTrue(result)
+        # Should return success status
+        self.assertTrue(result['success'])
+        self.assertIn('chart_type', result)
+        self.assertEqual(result['chart_type'], 'theme_impact')
         
-        # Verify plotly_chart was called
-        mock_plotly_chart.assert_called_once()
+        # Verify plotly calls
+        mock_px_bar.assert_called_once()
+        mock_plotly_chart.assert_called_once_with(mock_fig, use_container_width=True)
     
-    @patch('dashboard.charts.st.warning')
-    def test_display_chart_with_error_handling_none_result(self, mock_warning):
-        """Test chart display when chart function returns None."""
-        # Mock chart function that returns None
-        def mock_chart_func(df):
-            return None
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_theme_impact_chart_empty_data(self, mock_plotly_chart, mock_px_bar):
+        """Test theme impact chart creation with empty data."""
+        empty_df = pd.DataFrame()
         
-        result = display_chart_with_error_handling(
-            mock_chart_func, self.sample_data, "Test Chart"
-        )
+        result = create_theme_impact_chart(empty_df)
         
-        # Verify failure
-        self.assertFalse(result)
+        # Should handle empty data gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
         
-        # Verify warning was displayed
-        mock_warning.assert_called_once()
+        # Should not call plotly functions
+        mock_px_bar.assert_not_called()
+        mock_plotly_chart.assert_not_called()
     
-    @patch('dashboard.charts.st.error')
-    def test_display_chart_with_error_handling_exception(self, mock_error):
-        """Test chart display when chart function raises exception."""
-        # Mock chart function that raises exception
-        def mock_chart_func(df):
-            raise ValueError("Test error")
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_theme_impact_chart_missing_columns(self, mock_plotly_chart, mock_px_bar):
+        """Test theme impact chart creation with missing columns."""
+        incomplete_data = pd.DataFrame({
+            'theme': ['Performance', 'Features'],
+            'other_column': [1, 2]
+            # Missing impact_score
+        })
         
-        result = display_chart_with_error_handling(
-            mock_chart_func, self.sample_data, "Test Chart"
-        )
+        result = create_theme_impact_chart(incomplete_data)
         
-        # Verify failure
-        self.assertFalse(result)
-        
-        # Verify error was displayed
-        mock_error.assert_called_once()
+        # Should handle missing columns gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
     
-    @patch('dashboard.charts.st.columns')
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_theme_impact_chart_single_theme(self, mock_plotly_chart, mock_px_bar):
+        """Test theme impact chart creation with single theme."""
+        single_theme_data = pd.DataFrame({
+            'theme': ['Performance'],
+            'impact_score': [8.5],
+            'sentiment': ['negative']
+        })
+        
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_bar.return_value = mock_fig
+        
+        result = create_theme_impact_chart(single_theme_data)
+        
+        # Should handle single theme
+        self.assertTrue(result['success'])
+        mock_px_bar.assert_called_once()
+
+
+class TestCreateSentimentDistributionChart(unittest.TestCase):
+    """Test cases for create_sentiment_distribution_chart function."""
+    
+    def setUp(self):
+        """Set up test data."""
+        self.sample_data = pd.DataFrame({
+            'sentiment': ['positive', 'negative', 'neutral', 'positive', 'negative', 'positive'],
+            'impact_score': [6.2, 8.5, 4.8, 5.9, 7.1, 5.3],
+            'theme': ['Features', 'Performance', 'Support', 'Features', 'Performance', 'UI/UX']
+        })
+    
+    @patch('dashboard.charts.px.pie')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_sentiment_distribution_chart_basic(self, mock_plotly_chart, mock_px_pie):
+        """Test basic sentiment distribution chart creation."""
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_pie.return_value = mock_fig
+        
+        result = create_sentiment_distribution_chart(self.sample_data)
+        
+        # Should return success status
+        self.assertTrue(result['success'])
+        self.assertEqual(result['chart_type'], 'sentiment_distribution')
+        
+        # Verify plotly calls
+        mock_px_pie.assert_called_once()
+        mock_plotly_chart.assert_called_once_with(mock_fig, use_container_width=True)
+    
+    @patch('dashboard.charts.px.pie')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_sentiment_distribution_chart_empty_data(self, mock_plotly_chart, mock_px_pie):
+        """Test sentiment distribution chart creation with empty data."""
+        empty_df = pd.DataFrame()
+        
+        result = create_sentiment_distribution_chart(empty_df)
+        
+        # Should handle empty data gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
+    
+    @patch('dashboard.charts.px.pie')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_sentiment_distribution_chart_single_sentiment(self, mock_plotly_chart, mock_px_pie):
+        """Test sentiment distribution chart with single sentiment type."""
+        single_sentiment_data = pd.DataFrame({
+            'sentiment': ['positive', 'positive', 'positive'],
+            'impact_score': [6.2, 5.9, 5.3]
+        })
+        
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_pie.return_value = mock_fig
+        
+        result = create_sentiment_distribution_chart(single_sentiment_data)
+        
+        # Should handle single sentiment type
+        self.assertTrue(result['success'])
+        mock_px_pie.assert_called_once()
+
+
+class TestCreateSourceChannelChart(unittest.TestCase):
+    """Test cases for create_source_channel_chart function."""
+    
+    def setUp(self):
+        """Set up test data."""
+        self.sample_data = pd.DataFrame({
+            'source_channel': ['iOS App Store', 'Twitter', 'Internal Sales', 'Google Play', 'iOS App Store', 'Twitter'],
+            'impact_score': [6.2, 8.5, 4.8, 5.9, 7.1, 5.3],
+            'sentiment': ['positive', 'negative', 'neutral', 'positive', 'negative', 'positive']
+        })
+    
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_source_channel_chart_basic(self, mock_plotly_chart, mock_px_bar):
+        """Test basic source channel chart creation."""
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_bar.return_value = mock_fig
+        
+        result = create_source_channel_chart(self.sample_data)
+        
+        # Should return success status
+        self.assertTrue(result['success'])
+        self.assertEqual(result['chart_type'], 'source_channel')
+        
+        # Verify plotly calls
+        mock_px_bar.assert_called_once()
+        mock_plotly_chart.assert_called_once_with(mock_fig, use_container_width=True)
+    
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_source_channel_chart_empty_data(self, mock_plotly_chart, mock_px_bar):
+        """Test source channel chart creation with empty data."""
+        empty_df = pd.DataFrame()
+        
+        result = create_source_channel_chart(empty_df)
+        
+        # Should handle empty data gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
+
+
+class TestCreateTimeTrendChart(unittest.TestCase):
+    """Test cases for create_time_trend_chart function."""
+    
+    def setUp(self):
+        """Set up test data with timestamps."""
+        from datetime import datetime, timedelta
+        
+        self.sample_data = pd.DataFrame({
+            'timestamp': [
+                datetime.now() - timedelta(days=i) for i in range(6)
+            ],
+            'impact_score': [6.2, 8.5, 4.8, 5.9, 7.1, 5.3],
+            'sentiment': ['positive', 'negative', 'neutral', 'positive', 'negative', 'positive']
+        })
+    
+    @patch('dashboard.charts.px.line')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_time_trend_chart_basic(self, mock_plotly_chart, mock_px_line):
+        """Test basic time trend chart creation."""
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_line.return_value = mock_fig
+        
+        result = create_time_trend_chart(self.sample_data)
+        
+        # Should return success status
+        self.assertTrue(result['success'])
+        self.assertEqual(result['chart_type'], 'time_trend')
+        
+        # Verify plotly calls
+        mock_px_line.assert_called_once()
+        mock_plotly_chart.assert_called_once_with(mock_fig, use_container_width=True)
+    
+    @patch('dashboard.charts.px.line')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_time_trend_chart_missing_timestamp(self, mock_plotly_chart, mock_px_line):
+        """Test time trend chart creation with missing timestamp column."""
+        data_without_timestamp = pd.DataFrame({
+            'impact_score': [6.2, 8.5, 4.8],
+            'sentiment': ['positive', 'negative', 'neutral']
+        })
+        
+        result = create_time_trend_chart(data_without_timestamp)
+        
+        # Should handle missing timestamp gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
+
+
+class TestCreateStrategicGoalChart(unittest.TestCase):
+    """Test cases for create_strategic_goal_chart function."""
+    
+    def setUp(self):
+        """Set up test data."""
+        self.sample_data = pd.DataFrame({
+            'strategic_goal': ['Growth', 'Trust&Safety', 'CX Efficiency', 'Growth', 'Trust&Safety', 'Growth'],
+            'impact_score': [6.2, 8.5, 4.8, 5.9, 7.1, 5.3],
+            'sentiment': ['positive', 'negative', 'neutral', 'positive', 'negative', 'positive']
+        })
+    
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_strategic_goal_chart_basic(self, mock_plotly_chart, mock_px_bar):
+        """Test basic strategic goal chart creation."""
+        # Mock plotly figure
+        mock_fig = MagicMock()
+        mock_px_bar.return_value = mock_fig
+        
+        result = create_strategic_goal_chart(self.sample_data)
+        
+        # Should return success status
+        self.assertTrue(result['success'])
+        self.assertEqual(result['chart_type'], 'strategic_goal')
+        
+        # Verify plotly calls
+        mock_px_bar.assert_called_once()
+        mock_plotly_chart.assert_called_once_with(mock_fig, use_container_width=True)
+    
+    @patch('dashboard.charts.px.bar')
+    @patch('dashboard.charts.st.plotly_chart')
+    def test_create_strategic_goal_chart_empty_data(self, mock_plotly_chart, mock_px_bar):
+        """Test strategic goal chart creation with empty data."""
+        empty_df = pd.DataFrame()
+        
+        result = create_strategic_goal_chart(empty_df)
+        
+        # Should handle empty data gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
+
+
+class TestCreateComprehensiveDashboardCharts(unittest.TestCase):
+    """Test cases for create_comprehensive_dashboard_charts function."""
+    
+    def setUp(self):
+        """Set up comprehensive test data."""
+        from datetime import datetime, timedelta
+        
+        self.comprehensive_data = pd.DataFrame({
+            'theme': ['Performance', 'Features', 'Support', 'Performance', 'UI/UX', 'Features'],
+            'sentiment': ['negative', 'positive', 'neutral', 'negative', 'positive', 'positive'],
+            'source_channel': ['iOS App Store', 'Twitter', 'Internal Sales', 'Google Play', 'iOS App Store', 'Twitter'],
+            'strategic_goal': ['Trust&Safety', 'Growth', 'CX Efficiency', 'Trust&Safety', 'Growth', 'Growth'],
+            'impact_score': [8.5, 6.2, 4.8, 7.1, 5.3, 5.9],
+            'timestamp': [
+                datetime.now() - timedelta(days=i) for i in range(6)
+            ]
+        })
+    
+    @patch('dashboard.charts.create_theme_impact_chart')
+    @patch('dashboard.charts.create_sentiment_distribution_chart')
+    @patch('dashboard.charts.create_source_channel_chart')
+    @patch('dashboard.charts.create_time_trend_chart')
+    @patch('dashboard.charts.create_strategic_goal_chart')
     @patch('dashboard.charts.st.subheader')
-    @patch('dashboard.charts.display_chart_with_error_handling')
-    def test_create_comprehensive_dashboard_charts_with_data(self, mock_display, mock_subheader, mock_columns):
-        """Test comprehensive dashboard charts creation with valid data."""
-        # Mock streamlit columns
+    @patch('dashboard.charts.st.columns')
+    def test_create_comprehensive_dashboard_charts_success(self, mock_columns, mock_subheader,
+                                                         mock_strategic_chart, mock_time_chart,
+                                                         mock_source_chart, mock_sentiment_chart,
+                                                         mock_theme_chart):
+        """Test comprehensive dashboard charts creation."""
+        # Mock successful chart creation
+        success_result = {'success': True, 'chart_type': 'test'}
+        mock_theme_chart.return_value = success_result
+        mock_sentiment_chart.return_value = success_result
+        mock_source_chart.return_value = success_result
+        mock_time_chart.return_value = success_result
+        mock_strategic_chart.return_value = success_result
+        
+        # Mock columns
         mock_col1, mock_col2 = MagicMock(), MagicMock()
         mock_columns.return_value = [mock_col1, mock_col2]
         
-        # Mock display function to return success
-        mock_display.return_value = True
+        result = create_comprehensive_dashboard_charts(self.comprehensive_data)
         
-        result = create_comprehensive_dashboard_charts(self.sample_data)
+        # Should return success status
+        self.assertTrue(result['success'])
+        self.assertIn('charts_created', result)
+        self.assertEqual(result['charts_created'], 5)
         
-        # Verify all charts were attempted
-        self.assertIn('theme_impact', result)
-        self.assertIn('sentiment_distribution', result)
-        self.assertIn('time_trends', result)
-        self.assertIn('source_impact', result)
-        
-        # Verify streamlit components were called
-        mock_columns.assert_called_once_with(2)
-        self.assertEqual(mock_subheader.call_count, 4)
-        self.assertEqual(mock_display.call_count, 4)
+        # Verify all chart functions called
+        mock_theme_chart.assert_called_once()
+        mock_sentiment_chart.assert_called_once()
+        mock_source_chart.assert_called_once()
+        mock_time_chart.assert_called_once()
+        mock_strategic_chart.assert_called_once()
     
-    @patch('dashboard.charts.st.warning')
-    def test_create_comprehensive_dashboard_charts_empty_data(self, mock_warning):
-        """Test comprehensive dashboard charts creation with empty data."""
-        result = create_comprehensive_dashboard_charts(self.empty_data)
+    @patch('dashboard.charts.create_theme_impact_chart')
+    @patch('dashboard.charts.create_sentiment_distribution_chart')
+    @patch('dashboard.charts.create_source_channel_chart')
+    @patch('dashboard.charts.create_time_trend_chart')
+    @patch('dashboard.charts.create_strategic_goal_chart')
+    @patch('dashboard.charts.st.subheader')
+    @patch('dashboard.charts.st.columns')
+    def test_create_comprehensive_dashboard_charts_partial_failure(self, mock_columns, mock_subheader,
+                                                                 mock_strategic_chart, mock_time_chart,
+                                                                 mock_source_chart, mock_sentiment_chart,
+                                                                 mock_theme_chart):
+        """Test comprehensive dashboard charts with some chart failures."""
+        # Mock mixed success/failure results
+        success_result = {'success': True, 'chart_type': 'test'}
+        failure_result = {'success': False, 'error': 'Test error'}
         
-        # Verify empty result
-        self.assertEqual(result, {})
+        mock_theme_chart.return_value = success_result
+        mock_sentiment_chart.return_value = failure_result
+        mock_source_chart.return_value = success_result
+        mock_time_chart.return_value = failure_result
+        mock_strategic_chart.return_value = success_result
         
-        # Verify warning was displayed
-        mock_warning.assert_called_once()
+        # Mock columns
+        mock_col1, mock_col2 = MagicMock(), MagicMock()
+        mock_columns.return_value = [mock_col1, mock_col2]
+        
+        result = create_comprehensive_dashboard_charts(self.comprehensive_data)
+        
+        # Should return partial success
+        self.assertTrue(result['success'])
+        self.assertEqual(result['charts_created'], 3)  # 3 successful, 2 failed
+        self.assertEqual(result['charts_failed'], 2)
     
-    def test_theme_impact_chart_data_aggregation(self):
-        """Test that theme impact chart properly aggregates data by theme."""
-        fig = create_theme_impact_chart(self.sample_data)
+    @patch('dashboard.charts.st.error')
+    def test_create_comprehensive_dashboard_charts_empty_data(self, mock_error):
+        """Test comprehensive dashboard charts with empty data."""
+        empty_df = pd.DataFrame()
         
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
+        result = create_comprehensive_dashboard_charts(empty_df)
         
-        # Check that data is aggregated (should have fewer bars than original records)
-        unique_themes = self.sample_data['theme'].nunique()
-        self.assertEqual(len(fig.data[0].y), unique_themes)
+        # Should handle empty data gracefully
+        self.assertFalse(result['success'])
+        self.assertIn('error', result)
+        mock_error.assert_called_once()
+
+
+class TestPrepareChartData(unittest.TestCase):
+    """Test cases for prepare_chart_data function."""
     
-    def test_sentiment_distribution_chart_percentages(self):
-        """Test that sentiment distribution chart shows proper percentages."""
-        fig = create_sentiment_distribution_chart(self.sample_data)
-        
-        # Verify chart was created
-        self.assertIsInstance(fig, go.Figure)
-        
-        # Verify values sum to total count
-        total_values = sum(fig.data[0].values)
-        self.assertEqual(total_values, len(self.sample_data))
+    def setUp(self):
+        """Set up test data."""
+        self.sample_data = pd.DataFrame({
+            'theme': ['Performance', 'Features', 'Support', 'Performance', 'UI/UX'],
+            'impact_score': [8.5, 6.2, 4.8, 7.1, 5.3],
+            'sentiment': ['negative', 'positive', 'neutral', 'negative', 'positive']
+        })
     
-    def test_chart_error_handling_robustness(self):
-        """Test that all chart functions handle various error conditions gracefully."""
-        # Test with None input
-        self.assertIsNone(create_theme_impact_chart(None))
-        self.assertIsNone(create_sentiment_distribution_chart(None))
-        self.assertIsNone(create_time_trend_chart(None))
-        self.assertIsNone(create_source_impact_chart(None))
+    def test_prepare_chart_data_theme_aggregation(self):
+        """Test chart data preparation for theme aggregation."""
+        chart_data = prepare_chart_data(self.sample_data, group_by='theme', agg_column='impact_score')
+        
+        # Should group by theme and aggregate impact scores
+        self.assertIn('Performance', chart_data.index)
+        self.assertIn('Features', chart_data.index)
+        
+        # Check aggregated values
+        performance_total = chart_data.loc['Performance']
+        self.assertAlmostEqual(performance_total, 15.6, places=1)  # 8.5 + 7.1
+    
+    def test_prepare_chart_data_sentiment_aggregation(self):
+        """Test chart data preparation for sentiment aggregation."""
+        chart_data = prepare_chart_data(self.sample_data, group_by='sentiment', agg_column='impact_score')
+        
+        # Should group by sentiment
+        self.assertIn('negative', chart_data.index)
+        self.assertIn('positive', chart_data.index)
+        self.assertIn('neutral', chart_data.index)
+    
+    def test_prepare_chart_data_count_aggregation(self):
+        """Test chart data preparation with count aggregation."""
+        chart_data = prepare_chart_data(self.sample_data, group_by='theme', agg_function='count')
+        
+        # Should count occurrences
+        performance_count = chart_data.loc['Performance']
+        self.assertEqual(performance_count, 2)  # 2 Performance entries
+    
+    def test_prepare_chart_data_empty_data(self):
+        """Test chart data preparation with empty data."""
+        empty_df = pd.DataFrame()
+        
+        chart_data = prepare_chart_data(empty_df, group_by='theme', agg_column='impact_score')
+        
+        # Should return empty Series
+        self.assertTrue(chart_data.empty)
+    
+    def test_prepare_chart_data_missing_columns(self):
+        """Test chart data preparation with missing columns."""
+        incomplete_data = pd.DataFrame({
+            'theme': ['Performance', 'Features'],
+            'other_column': [1, 2]
+            # Missing impact_score
+        })
+        
+        chart_data = prepare_chart_data(incomplete_data, group_by='theme', agg_column='impact_score')
+        
+        # Should handle missing columns gracefully
+        self.assertTrue(chart_data.empty)
+
+
+class TestFormatChartColors(unittest.TestCase):
+    """Test cases for format_chart_colors function."""
+    
+    def test_format_chart_colors_sentiment(self):
+        """Test chart color formatting for sentiment data."""
+        colors = format_chart_colors('sentiment')
+        
+        # Should return sentiment-specific colors
+        self.assertIsInstance(colors, dict)
+        self.assertIn('positive', colors)
+        self.assertIn('negative', colors)
+        self.assertIn('neutral', colors)
+        
+        # Check color values
+        self.assertEqual(colors['positive'], '#2E8B57')  # Green
+        self.assertEqual(colors['negative'], '#DC143C')  # Red
+        self.assertEqual(colors['neutral'], '#4682B4')   # Blue
+    
+    def test_format_chart_colors_theme(self):
+        """Test chart color formatting for theme data."""
+        colors = format_chart_colors('theme')
+        
+        # Should return theme-specific colors
+        self.assertIsInstance(colors, list)
+        self.assertGreater(len(colors), 0)
+        
+        # Should contain valid color codes
+        for color in colors:
+            self.assertTrue(color.startswith('#'))
+            self.assertEqual(len(color), 7)  # #RRGGBB format
+    
+    def test_format_chart_colors_default(self):
+        """Test chart color formatting for default/unknown type."""
+        colors = format_chart_colors('unknown_type')
+        
+        # Should return default color scheme
+        self.assertIsInstance(colors, list)
+        self.assertGreater(len(colors), 0)
+    
+    def test_format_chart_colors_source_channel(self):
+        """Test chart color formatting for source channel data."""
+        colors = format_chart_colors('source_channel')
+        
+        # Should return source-specific colors
+        self.assertIsInstance(colors, list)
+        self.assertGreater(len(colors), 0)
 
 
 if __name__ == '__main__':

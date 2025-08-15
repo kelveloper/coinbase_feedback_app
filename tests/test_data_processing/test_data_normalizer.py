@@ -1,323 +1,383 @@
 """
 Unit tests for data_normalizer module.
+
+Tests cover data normalization, column mapping, and DataFrame unification
+functionality with various edge cases and error conditions.
 """
 
 import unittest
 import pandas as pd
-from src.data_processing.data_normalizer import (
-    normalize_feedback_text,
-    normalize_author_handle,
-    add_source_channel,
-    normalize_single_source,
-    unify_dataframes,
-    validate_unified_dataframe,
-    get_normalization_summary,
-    normalize_and_unify_data,
-    COLUMN_MAPPINGS,
-    STANDARD_COLUMNS
+import numpy as np
+import sys
+import os
+
+# Add src directory to path for imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
+
+from data_processing.data_normalizer import (
+    normalize_column_names,
+    map_feedback_text_column,
+    map_author_handle_column,
+    add_source_channel_column,
+    normalize_and_unify_data
 )
 
 
-class TestDataNormalizer(unittest.TestCase):
+class TestNormalizeColumnNames(unittest.TestCase):
+    """Test cases for normalize_column_names function."""
+    
+    def test_normalize_ios_columns(self):
+        """Test column normalization for iOS data."""
+        df = pd.DataFrame({
+            'customer_id': ['IOS-001'],
+            'source': ['iOS App Store'],
+            'username': ['user1'],
+            'timestamp': ['2024-01-01'],
+            'rating': [4],
+            'sentiment': ['positive'],
+            'review_text': ['Great app'],
+            'theme': ['Performance'],
+            'severity': [1.0],
+            'strategic_goal': ['Growth']
+        })
+        
+        result = normalize_column_names(df, 'ios_reviews')
+        
+        # Check that all expected columns are present
+        expected_columns = ['customer_id', 'source', 'username', 'timestamp', 
+                          'rating', 'sentiment', 'review_text', 'theme', 
+                          'severity', 'strategic_goal']
+        for col in expected_columns:
+            self.assertIn(col, result.columns)
+    
+    def test_normalize_twitter_columns(self):
+        """Test column normalization for Twitter data."""
+        df = pd.DataFrame({
+            'customer_id': ['TW-001'],
+            'source': ['Twitter'],
+            'handle': ['@user1'],
+            'followers': [1000],
+            'timestamp': ['2024-01-01'],
+            'sentiment': ['positive'],
+            'tweet_text': ['Great platform'],
+            'theme': ['Performance'],
+            'severity': [1.0],
+            'strategic_goal': ['Growth']
+        })
+        
+        result = normalize_column_names(df, 'twitter_mentions')
+        
+        # Check that all expected columns are present
+        expected_columns = ['customer_id', 'source', 'handle', 'followers',
+                          'timestamp', 'sentiment', 'tweet_text', 'theme',
+                          'severity', 'strategic_goal']
+        for col in expected_columns:
+            self.assertIn(col, result.columns)
+    
+    def test_normalize_unknown_source(self):
+        """Test column normalization for unknown source type."""
+        df = pd.DataFrame({'test_col': ['value']})
+        
+        result = normalize_column_names(df, 'unknown_source')
+        
+        # Should return original DataFrame unchanged
+        self.assertTrue(result.equals(df))
+
+
+class TestMapFeedbackTextColumn(unittest.TestCase):
+    """Test cases for map_feedback_text_column function."""
+    
+    def test_map_review_text(self):
+        """Test mapping review_text to feedback_text."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'review_text': ['This is a review']
+        })
+        
+        result = map_feedback_text_column(df)
+        
+        self.assertIn('feedback_text', result.columns)
+        self.assertEqual(result.iloc[0]['feedback_text'], 'This is a review')
+    
+    def test_map_tweet_text(self):
+        """Test mapping tweet_text to feedback_text."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'tweet_text': ['This is a tweet']
+        })
+        
+        result = map_feedback_text_column(df)
+        
+        self.assertIn('feedback_text', result.columns)
+        self.assertEqual(result.iloc[0]['feedback_text'], 'This is a tweet')
+    
+    def test_map_note_text(self):
+        """Test mapping note_text to feedback_text."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'note_text': ['This is a note']
+        })
+        
+        result = map_feedback_text_column(df)
+        
+        self.assertIn('feedback_text', result.columns)
+        self.assertEqual(result.iloc[0]['feedback_text'], 'This is a note')
+    
+    def test_map_no_text_columns(self):
+        """Test mapping when no text columns are present."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'other_column': ['value']
+        })
+        
+        result = map_feedback_text_column(df)
+        
+        self.assertIn('feedback_text', result.columns)
+        self.assertEqual(result.iloc[0]['feedback_text'], '')
+    
+    def test_map_multiple_text_columns(self):
+        """Test mapping when multiple text columns are present."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'review_text': ['Review text'],
+            'tweet_text': ['Tweet text'],
+            'note_text': ['Note text']
+        })
+        
+        result = map_feedback_text_column(df)
+        
+        # Should prioritize review_text first
+        self.assertEqual(result.iloc[0]['feedback_text'], 'Review text')
+    
+    def test_map_null_text_values(self):
+        """Test mapping with null text values."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001', 'TEST-002'],
+            'review_text': [None, np.nan]
+        })
+        
+        result = map_feedback_text_column(df)
+        
+        # Should handle null values gracefully
+        self.assertTrue(all(result['feedback_text'] == ''))
+
+
+class TestMapAuthorHandleColumn(unittest.TestCase):
+    """Test cases for map_author_handle_column function."""
+    
+    def test_map_username(self):
+        """Test mapping username to author_handle."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'username': ['user123']
+        })
+        
+        result = map_author_handle_column(df)
+        
+        self.assertIn('author_handle', result.columns)
+        self.assertEqual(result.iloc[0]['author_handle'], 'user123')
+    
+    def test_map_handle(self):
+        """Test mapping handle to author_handle."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'handle': ['@user123']
+        })
+        
+        result = map_author_handle_column(df)
+        
+        self.assertIn('author_handle', result.columns)
+        self.assertEqual(result.iloc[0]['author_handle'], '@user123')
+    
+    def test_map_account_name(self):
+        """Test mapping account_name to author_handle."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'account_name': ['Account Name']
+        })
+        
+        result = map_author_handle_column(df)
+        
+        self.assertIn('author_handle', result.columns)
+        self.assertEqual(result.iloc[0]['author_handle'], 'Account Name')
+    
+    def test_map_no_handle_columns(self):
+        """Test mapping when no handle columns are present."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'other_column': ['value']
+        })
+        
+        result = map_author_handle_column(df)
+        
+        self.assertIn('author_handle', result.columns)
+        self.assertEqual(result.iloc[0]['author_handle'], 'Unknown')
+
+
+class TestAddSourceChannelColumn(unittest.TestCase):
+    """Test cases for add_source_channel_column function."""
+    
+    def test_add_source_channel_ios(self):
+        """Test adding source channel for iOS data."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'source': ['iOS App Store']
+        })
+        
+        result = add_source_channel_column(df, 'ios_reviews')
+        
+        self.assertIn('source_channel', result.columns)
+        self.assertEqual(result.iloc[0]['source_channel'], 'iOS App Store')
+    
+    def test_add_source_channel_twitter(self):
+        """Test adding source channel for Twitter data."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'source': ['Twitter']
+        })
+        
+        result = add_source_channel_column(df, 'twitter_mentions')
+        
+        self.assertIn('source_channel', result.columns)
+        self.assertEqual(result.iloc[0]['source_channel'], 'Twitter (X)')
+    
+    def test_add_source_channel_unknown(self):
+        """Test adding source channel for unknown source type."""
+        df = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'source': ['Unknown']
+        })
+        
+        result = add_source_channel_column(df, 'unknown_source')
+        
+        self.assertIn('source_channel', result.columns)
+        self.assertEqual(result.iloc[0]['source_channel'], 'Unknown')
+
+
+class TestNormalizeAndUnifyData(unittest.TestCase):
+    """Test cases for normalize_and_unify_data function."""
     
     def setUp(self):
-        """Set up test fixtures."""
-        # Sample iOS reviews data
+        """Set up test data."""
         self.ios_data = pd.DataFrame({
             'customer_id': ['IOS-001', 'IOS-002'],
             'source': ['iOS App Store', 'iOS App Store'],
             'username': ['user1', 'user2'],
-            'timestamp': ['2025-06-23T19:01:00', '2025-06-11T17:07:00'],
+            'timestamp': ['2024-01-01', '2024-01-02'],
             'rating': [4, 5],
             'sentiment': ['positive', 'positive'],
             'review_text': ['Great app', 'Love it'],
-            'theme': ['Trading/Execution & Fees', 'Support Experience'],
-            'severity': [0.28, 0.54],
-            'strategic_goal': ['Growth', 'CX Efficiency'],
-            'helpful_votes': [17, 23],
-            'region': ['US-NY', 'CA'],
-            'device': ['iPhone 13', 'iPhone 14'],
-            'app_version': ['11.2.1', '11.2.0']
+            'theme': ['Performance', 'Features'],
+            'severity': [1.0, 0.5],
+            'strategic_goal': ['Growth', 'Growth']
         })
         
-        # Sample Twitter data
         self.twitter_data = pd.DataFrame({
             'customer_id': ['TW-001', 'TW-002'],
-            'source': ['Twitter (X)', 'Twitter (X)'],
-            'handle': ['@trader1', '@trader2'],
-            'followers': [148860, 106574],
-            'timestamp': ['2025-06-05T21:08:00', '2025-07-01T11:49:00'],
-            'sentiment': ['positive', 'positive'],
-            'tweet_text': ['Great trading', 'Nice charts'],
-            'theme': ['Performance/Outages', 'Tax Docs & Reporting'],
-            'severity': [0.29, 0.27],
-            'strategic_goal': ['Trust&Safety', 'Compliance'],
-            'verified': [True, True],
-            'likes': [133, 157],
-            'retweets': [80, 118],
-            'reply_count': [25, 16]
-        })
-        
-        # Sample sales notes data
-        self.sales_data = pd.DataFrame({
-            'customer_id': ['INT-001', 'INT-002'],
-            'source': ['Internal Sales Notes', 'Internal Sales Notes'],
-            'account_name': ['Acct-001', 'Acct-002'],
-            'timestamp': ['2025-04-18T08:35:00', '2025-03-06T11:59:00'],
-            'sentiment': ['positive', 'positive'],
-            'note_text': ['Pricing acceptable', 'Migration approved'],
-            'theme': ['Security, Fraud & Phishing', 'Security, Fraud & Phishing'],
-            'severity': [0.34, 0.45],
-            'strategic_goal': ['Trust&Safety', 'Trust&Safety'],
-            'ARR_impact_estimate_USD': [20000, 20000],
-            'account_type': ['Enterprise', 'Mid-Market'],
-            'deal_stage': ['Negotiation', 'Evaluation'],
-            'requested_feature': ['Post-trade Receipt', 'None'],
-            'contact_role': ['CTO', 'PM'],
-            'region': ['AU', 'JP']
+            'source': ['Twitter', 'Twitter'],
+            'handle': ['@user1', '@user2'],
+            'followers': [1000, 2000],
+            'timestamp': ['2024-01-03', '2024-01-04'],
+            'sentiment': ['positive', 'negative'],
+            'tweet_text': ['Great platform', 'Having issues'],
+            'theme': ['Features', 'Support'],
+            'severity': [1.0, 2.0],
+            'strategic_goal': ['Growth', 'CX Efficiency']
         })
     
-    def test_normalize_feedback_text_ios(self):
-        """Test feedback text normalization for iOS reviews."""
-        result = normalize_feedback_text(self.ios_data, 'ios_reviews')
+    def test_normalize_single_source(self):
+        """Test normalization with single data source."""
+        loaded_data = {'ios_reviews': self.ios_data}
         
-        self.assertIn('feedback_text', result.columns)
-        self.assertEqual(result['feedback_text'].iloc[0], 'Great app')
-        self.assertEqual(result['feedback_text'].iloc[1], 'Love it')
-    
-    def test_normalize_feedback_text_twitter(self):
-        """Test feedback text normalization for Twitter mentions."""
-        result = normalize_feedback_text(self.twitter_data, 'twitter_mentions')
+        result = normalize_and_unify_data(loaded_data)
         
-        self.assertIn('feedback_text', result.columns)
-        self.assertEqual(result['feedback_text'].iloc[0], 'Great trading')
-        self.assertEqual(result['feedback_text'].iloc[1], 'Nice charts')
-    
-    def test_normalize_feedback_text_sales(self):
-        """Test feedback text normalization for sales notes."""
-        result = normalize_feedback_text(self.sales_data, 'sales_notes')
-        
-        self.assertIn('feedback_text', result.columns)
-        self.assertEqual(result['feedback_text'].iloc[0], 'Pricing acceptable')
-        self.assertEqual(result['feedback_text'].iloc[1], 'Migration approved')
-    
-    def test_normalize_feedback_text_unknown_source(self):
-        """Test feedback text normalization with unknown source type."""
-        result = normalize_feedback_text(self.ios_data, 'unknown_source')
-        
-        # Should return original DataFrame unchanged
-        self.assertNotIn('feedback_text', result.columns)
-    
-    def test_normalize_feedback_text_missing_column(self):
-        """Test feedback text normalization with missing source column."""
-        # Remove the review_text column
-        incomplete_data = self.ios_data.drop('review_text', axis=1)
-        result = normalize_feedback_text(incomplete_data, 'ios_reviews')
-        
-        # Should return original DataFrame unchanged
-        self.assertNotIn('feedback_text', result.columns)
-    
-    def test_normalize_author_handle_ios(self):
-        """Test author handle normalization for iOS reviews."""
-        result = normalize_author_handle(self.ios_data, 'ios_reviews')
-        
-        self.assertIn('author_handle', result.columns)
-        self.assertEqual(result['author_handle'].iloc[0], 'user1')
-        self.assertEqual(result['author_handle'].iloc[1], 'user2')
-    
-    def test_normalize_author_handle_twitter(self):
-        """Test author handle normalization for Twitter mentions."""
-        result = normalize_author_handle(self.twitter_data, 'twitter_mentions')
-        
-        self.assertIn('author_handle', result.columns)
-        self.assertEqual(result['author_handle'].iloc[0], '@trader1')
-        self.assertEqual(result['author_handle'].iloc[1], '@trader2')
-    
-    def test_normalize_author_handle_sales(self):
-        """Test author handle normalization for sales notes."""
-        result = normalize_author_handle(self.sales_data, 'sales_notes')
-        
-        self.assertIn('author_handle', result.columns)
-        self.assertEqual(result['author_handle'].iloc[0], 'Acct-001')
-        self.assertEqual(result['author_handle'].iloc[1], 'Acct-002')
-    
-    def test_add_source_channel_ios(self):
-        """Test source channel addition for iOS reviews."""
-        result = add_source_channel(self.ios_data, 'ios_reviews')
-        
-        self.assertIn('source_channel', result.columns)
-        self.assertTrue((result['source_channel'] == 'iOS App Store').all())
-    
-    def test_add_source_channel_twitter(self):
-        """Test source channel addition for Twitter mentions."""
-        result = add_source_channel(self.twitter_data, 'twitter_mentions')
-        
-        self.assertIn('source_channel', result.columns)
-        self.assertTrue((result['source_channel'] == 'Twitter (X)').all())
-    
-    def test_add_source_channel_sales(self):
-        """Test source channel addition for sales notes."""
-        result = add_source_channel(self.sales_data, 'sales_notes')
-        
-        self.assertIn('source_channel', result.columns)
-        self.assertTrue((result['source_channel'] == 'Internal Sales Notes').all())
-    
-    def test_normalize_single_source_ios(self):
-        """Test complete normalization of iOS reviews."""
-        result = normalize_single_source(self.ios_data, 'ios_reviews')
-        
-        # Check all normalized columns are present
-        self.assertIn('feedback_text', result.columns)
-        self.assertIn('author_handle', result.columns)
-        self.assertIn('source_channel', result.columns)
-        
-        # Check values are correct
-        self.assertEqual(result['feedback_text'].iloc[0], 'Great app')
-        self.assertEqual(result['author_handle'].iloc[0], 'user1')
-        self.assertEqual(result['source_channel'].iloc[0], 'iOS App Store')
-    
-    def test_normalize_single_source_twitter(self):
-        """Test complete normalization of Twitter mentions."""
-        result = normalize_single_source(self.twitter_data, 'twitter_mentions')
-        
-        # Check all normalized columns are present
-        self.assertIn('feedback_text', result.columns)
-        self.assertIn('author_handle', result.columns)
-        self.assertIn('source_channel', result.columns)
-        
-        # Check values are correct
-        self.assertEqual(result['feedback_text'].iloc[0], 'Great trading')
-        self.assertEqual(result['author_handle'].iloc[0], '@trader1')
-        self.assertEqual(result['source_channel'].iloc[0], 'Twitter (X)')
-    
-    def test_unify_dataframes_success(self):
-        """Test successful unification of multiple DataFrames."""
-        loaded_data = {
-            'ios_reviews': self.ios_data,
-            'twitter_mentions': self.twitter_data
-        }
-        
-        result = unify_dataframes(loaded_data)
-        
-        # Check total records
-        self.assertEqual(len(result), 4)  # 2 iOS + 2 Twitter
-        
-        # Check normalized columns exist
-        self.assertIn('feedback_text', result.columns)
-        self.assertIn('author_handle', result.columns)
-        self.assertIn('source_channel', result.columns)
-        
-        # Check source channels are correct
-        source_channels = result['source_channel'].unique()
-        self.assertIn('iOS App Store', source_channels)
-        self.assertIn('Twitter (X)', source_channels)
-    
-    def test_unify_dataframes_empty_input(self):
-        """Test unification with empty input."""
-        result = unify_dataframes({})
-        
-        self.assertTrue(result.empty)
-    
-    def test_unify_dataframes_with_none_values(self):
-        """Test unification with None values in input."""
-        loaded_data = {
-            'ios_reviews': self.ios_data,
-            'twitter_mentions': None,
-            'sales_notes': pd.DataFrame()  # Empty DataFrame
-        }
-        
-        result = unify_dataframes(loaded_data)
-        
-        # Should only include iOS data
+        # Check unified structure
         self.assertEqual(len(result), 2)
-        self.assertTrue((result['source_channel'] == 'iOS App Store').all())
+        self.assertIn('feedback_text', result.columns)
+        self.assertIn('author_handle', result.columns)
+        self.assertIn('source_channel', result.columns)
+        
+        # Check data integrity
+        self.assertEqual(result.iloc[0]['feedback_text'], 'Great app')
+        self.assertEqual(result.iloc[0]['author_handle'], 'user1')
+        self.assertEqual(result.iloc[0]['source_channel'], 'iOS App Store')
     
-    def test_validate_unified_dataframe_valid(self):
-        """Test validation of valid unified DataFrame."""
+    def test_normalize_multiple_sources(self):
+        """Test normalization with multiple data sources."""
         loaded_data = {
             'ios_reviews': self.ios_data,
             'twitter_mentions': self.twitter_data
-        }
-        unified_df = unify_dataframes(loaded_data)
-        
-        self.assertTrue(validate_unified_dataframe(unified_df))
-    
-    def test_validate_unified_dataframe_empty(self):
-        """Test validation of empty DataFrame."""
-        empty_df = pd.DataFrame()
-        
-        self.assertFalse(validate_unified_dataframe(empty_df))
-    
-    def test_validate_unified_dataframe_missing_columns(self):
-        """Test validation of DataFrame with missing required columns."""
-        # Create DataFrame missing required columns
-        incomplete_df = pd.DataFrame({
-            'customer_id': ['TEST-001'],
-            'feedback_text': ['Test feedback']
-            # Missing other required columns
-        })
-        
-        self.assertFalse(validate_unified_dataframe(incomplete_df))
-    
-    def test_get_normalization_summary(self):
-        """Test normalization summary generation."""
-        loaded_data = {
-            'ios_reviews': self.ios_data,
-            'twitter_mentions': self.twitter_data
-        }
-        unified_df = unify_dataframes(loaded_data)
-        summary = get_normalization_summary(unified_df)
-        
-        self.assertEqual(summary['total_records'], 4)
-        self.assertEqual(len(summary['sources']), 2)
-        self.assertIn('iOS App Store', summary['sources'])
-        self.assertIn('Twitter (X)', summary['sources'])
-        self.assertEqual(summary['feedback_text_coverage'], 100.0)
-        self.assertEqual(summary['author_handle_coverage'], 100.0)
-    
-    def test_get_normalization_summary_empty(self):
-        """Test normalization summary for empty DataFrame."""
-        empty_df = pd.DataFrame()
-        summary = get_normalization_summary(empty_df)
-        
-        self.assertEqual(summary['total_records'], 0)
-        self.assertEqual(len(summary['sources']), 0)
-        self.assertEqual(summary['feedback_text_coverage'], 0)
-        self.assertEqual(summary['author_handle_coverage'], 0)
-    
-    def test_normalize_and_unify_data_complete(self):
-        """Test complete normalization and unification process."""
-        loaded_data = {
-            'ios_reviews': self.ios_data,
-            'twitter_mentions': self.twitter_data,
-            'sales_notes': self.sales_data
         }
         
         result = normalize_and_unify_data(loaded_data)
         
-        # Check total records
-        self.assertEqual(len(result), 6)  # 2 iOS + 2 Twitter + 2 Sales
+        # Check unified structure
+        self.assertEqual(len(result), 4)  # 2 iOS + 2 Twitter
+        self.assertIn('feedback_text', result.columns)
+        self.assertIn('author_handle', result.columns)
+        self.assertIn('source_channel', result.columns)
         
-        # Check all required columns exist
-        for col in STANDARD_COLUMNS:
+        # Check data from both sources
+        ios_rows = result[result['source_channel'] == 'iOS App Store']
+        twitter_rows = result[result['source_channel'] == 'Twitter (X)']
+        
+        self.assertEqual(len(ios_rows), 2)
+        self.assertEqual(len(twitter_rows), 2)
+    
+    def test_normalize_empty_data(self):
+        """Test normalization with empty data."""
+        loaded_data = {}
+        
+        result = normalize_and_unify_data(loaded_data)
+        
+        # Should return empty DataFrame with expected columns
+        self.assertTrue(result.empty)
+        expected_columns = ['customer_id', 'source_channel', 'feedback_text', 
+                          'author_handle', 'timestamp']
+        for col in expected_columns:
             self.assertIn(col, result.columns)
+    
+    def test_normalize_with_missing_columns(self):
+        """Test normalization with missing columns in source data."""
+        incomplete_data = pd.DataFrame({
+            'customer_id': ['TEST-001'],
+            'source': ['Test Source']
+            # Missing other expected columns
+        })
         
-        # Check source channels
-        source_channels = result['source_channel'].unique()
-        self.assertEqual(len(source_channels), 3)
-        self.assertIn('iOS App Store', source_channels)
-        self.assertIn('Twitter (X)', source_channels)
-        self.assertIn('Internal Sales Notes', source_channels)
+        loaded_data = {'test_source': incomplete_data}
         
-        # Check feedback text normalization worked
-        ios_records = result[result['source_channel'] == 'iOS App Store']
-        self.assertEqual(ios_records['feedback_text'].iloc[0], 'Great app')
+        result = normalize_and_unify_data(loaded_data)
         
-        twitter_records = result[result['source_channel'] == 'Twitter (X)']
-        self.assertEqual(twitter_records['feedback_text'].iloc[0], 'Great trading')
+        # Should handle missing columns gracefully
+        self.assertEqual(len(result), 1)
+        self.assertIn('feedback_text', result.columns)
+        self.assertIn('author_handle', result.columns)
         
-        sales_records = result[result['source_channel'] == 'Internal Sales Notes']
-        self.assertEqual(sales_records['feedback_text'].iloc[0], 'Pricing acceptable')
+        # Check default values
+        self.assertEqual(result.iloc[0]['feedback_text'], '')
+        self.assertEqual(result.iloc[0]['author_handle'], 'Unknown')
+    
+    def test_normalize_preserves_source_specific_columns(self):
+        """Test that source-specific columns are preserved."""
+        loaded_data = {
+            'ios_reviews': self.ios_data,
+            'twitter_mentions': self.twitter_data
+        }
+        
+        result = normalize_and_unify_data(loaded_data)
+        
+        # Check that source-specific columns are preserved
+        ios_rows = result[result['source_channel'] == 'iOS App Store']
+        twitter_rows = result[result['source_channel'] == 'Twitter (X)']
+        
+        # iOS should have rating column
+        self.assertIn('rating', ios_rows.columns)
+        self.assertFalse(ios_rows['rating'].isna().all())
+        
+        # Twitter should have followers column
+        self.assertIn('followers', twitter_rows.columns)
+        self.assertFalse(twitter_rows['followers'].isna().all())
 
 
 if __name__ == '__main__':
