@@ -149,6 +149,7 @@ def create_filter_controls(df: pd.DataFrame) -> Dict[str, Any]:
                     "Source Channel",
                     options=source_options,
                     index=0,
+                    key="filter_source_channel",
                     help="Filter by feedback source channel"
                 )
             elif 'source' in df.columns:
@@ -157,6 +158,7 @@ def create_filter_controls(df: pd.DataFrame) -> Dict[str, Any]:
                     "Source",
                     options=source_options,
                     index=0,
+                    key="filter_source",
                     help="Filter by feedback source"
                 )
         
@@ -168,6 +170,7 @@ def create_filter_controls(df: pd.DataFrame) -> Dict[str, Any]:
                     "Theme",
                     options=theme_options,
                     index=0,
+                    key="filter_theme",
                     help="Filter by feedback theme"
                 )
         
@@ -179,6 +182,7 @@ def create_filter_controls(df: pd.DataFrame) -> Dict[str, Any]:
                     "Sentiment",
                     options=sentiment_options,
                     index=0,
+                    key="filter_sentiment",
                     help="Filter by sentiment classification"
                 )
         

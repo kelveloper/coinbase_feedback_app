@@ -16,6 +16,7 @@ import sys
 import os
 from typing import Dict, Any, Optional
 import logging
+import time
 
 # Add src directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -122,7 +123,11 @@ def display_sidebar_info(df: Optional[pd.DataFrame]) -> Dict[str, Any]:
     st.sidebar.title("📊 Dashboard Controls")
     
     # Data refresh button
-    if st.sidebar.button("🔄 Refresh Data", help="Reload data from CSV files"):
+    refresh_clicked = st.sidebar.button("🔄 Refresh Data", key="sidebar_refresh_data", help="Reload data from CSV files")
+    if refresh_clicked:
+        # Clear cached data to force reload
+        if 'processed_data' in st.session_state:
+            st.session_state.processed_data = None
         st.rerun()
     
     # Data information
@@ -165,16 +170,19 @@ def display_sidebar_info(df: Optional[pd.DataFrame]) -> Dict[str, Any]:
         'data_directory': st.sidebar.text_input(
             "Data Directory", 
             value="csv_mock_data",
+            key="config_data_directory",
             help="Directory containing CSV files"
         ),
         'show_raw_data': st.sidebar.checkbox(
             "Show Raw Data Table", 
             value=True,
+            key="config_show_raw_data",
             help="Display detailed data table"
         ),
         'show_charts': st.sidebar.checkbox(
             "Show Charts", 
             value=True,
+            key="config_show_charts",
             help="Display interactive charts"
         )
     }
@@ -299,7 +307,7 @@ def display_error_page(error_message: str) -> None:
     st.write("**4. Review Error Logs**")
     st.info("Check the application logs for detailed error information")
     
-    if st.button("🔄 Try Again"):
+    if st.button("🔄 Try Again", key="error_page_try_again"):
         st.rerun()
 
 
@@ -310,16 +318,28 @@ def main():
     Requirements: 6.1, 6.2, 6.3, 6.4, 6.5
     """
     try:
-        # Display sidebar
-        config = display_sidebar_info(None)
+        # Initialize session state
+        if 'processed_data' not in st.session_state:
+            st.session_state.processed_data = None
+        if 'config' not in st.session_state:
+            st.session_state.config = {
+                'data_directory': 'csv_mock_data',
+                'show_raw_data': True,
+                'show_charts': True
+            }
         
-        # Load and process data
-        df = load_and_process_data(config.get('data_directory', 'csv_mock_data'))
+        # Display sidebar and get config
+        config = display_sidebar_info(st.session_state.processed_data)
+        st.session_state.config = config
+        
+        # Load and process data only if not already loaded
+        if st.session_state.processed_data is None:
+            df = load_and_process_data(config.get('data_directory', 'csv_mock_data'))
+            st.session_state.processed_data = df
+        else:
+            df = st.session_state.processed_data
         
         if df is not None and not df.empty:
-            # Update sidebar with loaded data info
-            config = display_sidebar_info(df)
-            
             # Display main dashboard
             display_main_dashboard(df, config)
             
