@@ -91,7 +91,7 @@ export function Dashboard() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Advanced Trade Insight Engine</h1>
+            <h1 className="text-3xl font-bold tracking-tight">Susbase Insights</h1>
             <p className="text-muted-foreground">
               Customer feedback analysis dashboard for Coinbase Advanced Trading
             </p>

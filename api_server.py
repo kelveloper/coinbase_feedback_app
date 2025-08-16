@@ -1,5 +1,5 @@
 """
-FastAPI Backend for Advanced Trade Insight Engine
+FastAPI Backend for Susbase Insights
 
 This module provides REST API endpoints that expose the existing Python data processing
 pipeline to the React frontend. It maintains all the existing functionality while providing
@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Advanced Trade Insight Engine API",
+    title="Susbase Insights API",
     description="REST API for customer feedback analysis and insights",
     version="1.0.0"
 )
@@ -148,7 +148,7 @@ def get_processed_data(force_refresh: bool = False) -> pd.DataFrame:
 async def root():
     """Root endpoint with API information."""
     return {
-        "message": "Advanced Trade Insight Engine API",
+        "message": "Susbase Insights API",
         "version": "1.0.0",
         "docs": "/docs",
         "health": "/health"
@@ -415,7 +415,7 @@ async def export_data():
 if __name__ == "__main__":
     import uvicorn
     
-    logger.info("Starting Advanced Trade Insight Engine API server...")
+    logger.info("Starting Susbase Insights API server...")
     uvicorn.run(
         "api_server:app",
         host="0.0.0.0",
