@@ -30,11 +30,13 @@ The engine processes customer feedback through a modular pipeline:
 ### Quick Setup
 
 1. **Clone or navigate to the project directory**
+
    ```bash
    cd coinbase_feedback_app
    ```
 
 2. **Install dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -47,6 +49,7 @@ The engine processes customer feedback through a modular pipeline:
 ### Dependencies
 
 The system requires the following Python packages:
+
 - `pandas>=1.5.0` - Data manipulation and analysis
 - `streamlit>=1.28.0` - Interactive dashboard framework
 - `fpdf2>=2.7.0` - PDF report generation
@@ -118,6 +121,7 @@ streamlit run src/dashboard/dashboard.py
 ```
 
 The dashboard will be available at `http://localhost:8501` and provides:
+
 - Key performance indicators (KPIs)
 - Interactive charts and visualizations
 - Filterable data tables
@@ -130,15 +134,19 @@ The dashboard will be available at `http://localhost:8501` and provides:
 The system expects four CSV files with specific column structures:
 
 #### iOS App Store Reviews (`coinbase_advance_apple_reviews.csv`)
+
 - `customer_id`, `username`, `rating`, `review_text`, `sentiment`, `theme`, `strategic_goal`, `severity`, `helpful_votes`
 
 #### Google Play Store Reviews (`coinbase_advanceGoogle_Play.csv`)
+
 - `customer_id`, `username`, `rating`, `review_text`, `sentiment`, `theme`, `strategic_goal`, `severity`, `helpful_votes`
 
 #### Twitter Mentions (`coinbase_advanced_twitter_mentions.csv`)
+
 - `customer_id`, `handle`, `followers`, `tweet_text`, `sentiment`, `theme`, `strategic_goal`, `severity`
 
 #### Internal Sales Notes (`coinbase_advance_internal_sales_notes.csv`)
+
 - `customer_id`, `account_name`, `note_text`, `sentiment`, `theme`, `strategic_goal`, `severity`, `ARR_impact_estimate_USD`
 
 ### Data Quality Requirements
@@ -226,6 +234,7 @@ python3 -m pytest tests/test_e2e_workflow.py -v
 ### Test Data
 
 The test suite uses the provided mock data in `csv_mock_data/` directory. Tests verify:
+
 - Data loading and normalization accuracy
 - Impact scoring calculations
 - Report generation functionality
@@ -237,6 +246,7 @@ The test suite uses the provided mock data in `csv_mock_data/` directory. Tests 
 ### Common Issues
 
 #### 1. Missing Dependencies
+
 ```bash
 # Error: ModuleNotFoundError
 # Solution: Install requirements
@@ -244,6 +254,7 @@ pip install -r requirements.txt
 ```
 
 #### 2. CSV File Not Found
+
 ```bash
 # Error: FileNotFoundError
 # Solution: Verify file paths in config.py or use --data-dir flag
@@ -251,12 +262,14 @@ python3 main.py --data-dir /correct/path/to/csv/files
 ```
 
 #### 3. PDF Generation Fails
+
 ```bash
 # Error: Unicode character issues
 # Solution: The system automatically sanitizes text, but ensure input data is UTF-8 encoded
 ```
 
 #### 4. Dashboard Won't Start
+
 ```bash
 # Error: Streamlit import issues
 # Solution: Ensure streamlit is installed and try:
@@ -267,12 +280,14 @@ streamlit run src/dashboard/dashboard.py
 ### Performance Issues
 
 #### Large Dataset Processing
+
 - The system processes data in memory; for very large datasets (>100k records), consider:
   - Increasing available RAM
   - Processing data in chunks
   - Using more powerful hardware
 
 #### Slow PDF Generation
+
 - PDF generation time scales with data size and complexity
 - For faster processing, consider reducing the number of feedback examples included in reports
 
@@ -293,7 +308,7 @@ Log files are saved in the `output/` directory with timestamps for easy identifi
 Based on the provided mock dataset (200 records):
 
 - **Data Loading**: ~0.3 seconds
-- **NLP Processing**: ~0.2 seconds  
+- **NLP Processing**: ~0.2 seconds
 - **Impact Scoring**: ~0.1 seconds
 - **Report Generation**: ~0.5 seconds
 - **Dashboard Preparation**: ~0.1 seconds
@@ -302,22 +317,24 @@ Based on the provided mock dataset (200 records):
 ### Scalability Guidelines
 
 | Dataset Size | Expected Processing Time | Memory Usage |
-|-------------|-------------------------|--------------|
-| 1K records  | ~5 seconds             | ~50 MB       |
-| 10K records | ~30 seconds            | ~200 MB      |
-| 100K records| ~5 minutes             | ~1 GB        |
+| ------------ | ------------------------ | ------------ |
+| 1K records   | ~5 seconds               | ~50 MB       |
+| 10K records  | ~30 seconds              | ~200 MB      |
+| 100K records | ~5 minutes               | ~1 GB        |
 
 ## 🤝 Contributing
 
 ### Development Setup
 
 1. **Install development dependencies**
+
    ```bash
    pip install -r requirements.txt
    pip install pytest-cov pytest-html
    ```
 
 2. **Run tests before committing**
+
    ```bash
    python3 -m pytest tests/ --cov=src
    ```
