@@ -28,6 +28,40 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+def sanitize_text_for_pdf(text: str) -> str:
+    """
+    Sanitize text to remove characters that cause PDF generation issues.
+    
+    Args:
+        text (str): Input text
+        
+    Returns:
+        str: Sanitized text safe for PDF generation
+    """
+    if not text:
+        return text
+    
+    # Replace problematic Unicode characters with ASCII equivalents
+    replacements = {
+        '—': '-',  # Em dash
+        '–': '-',  # En dash
+        ''': "'",  # Left single quotation mark
+        ''': "'",  # Right single quotation mark
+        '"': '"',  # Left double quotation mark
+        '"': '"',  # Right double quotation mark
+        '…': '...',  # Ellipsis
+        '•': '*',  # Bullet point
+    }
+    
+    for unicode_char, ascii_char in replacements.items():
+        text = text.replace(unicode_char, ascii_char)
+    
+    # Remove any remaining non-ASCII characters
+    text = text.encode('ascii', 'ignore').decode('ascii')
+    
+    return text
+
+
 class ReportPDF(FPDF):
     """Custom PDF class with header and footer methods."""
     
@@ -188,7 +222,7 @@ def add_pain_points_section(pdf: ReportPDF, pain_points: List[Dict[str, Any]]) -
         for i, pain_point in enumerate(pain_points, 1):
             # Pain point header
             pdf.set_font('Arial', 'B', 11)
-            theme = pain_point.get('theme', 'Unknown')
+            theme = sanitize_text_for_pdf(pain_point.get('theme', 'Unknown'))
             impact = pain_point.get('impact_score', 0)
             pdf.cell(0, 8, f'{i}. {theme} (Impact Score: {impact:.2f})', 0, 1, 'L')
             
@@ -201,6 +235,8 @@ def add_pain_points_section(pdf: ReportPDF, pain_points: List[Dict[str, Any]]) -
             # Feedback text (wrapped)
             feedback_text = pain_point.get('feedback_text', '')
             if feedback_text:
+                # Sanitize text for PDF compatibility
+                feedback_text = sanitize_text_for_pdf(feedback_text)
                 pdf.set_font('Arial', 'I', 9)
                 # Simple text wrapping
                 words = feedback_text.split()
@@ -249,7 +285,7 @@ def add_praised_features_section(pdf: ReportPDF, praised_features: List[Dict[str
         for i, feature in enumerate(praised_features, 1):
             # Feature header
             pdf.set_font('Arial', 'B', 11)
-            theme = feature.get('theme', 'Unknown')
+            theme = sanitize_text_for_pdf(feature.get('theme', 'Unknown'))
             impact = feature.get('impact_score', 0)
             pdf.cell(0, 8, f'{i}. {theme} (Impact Score: {impact:.2f})', 0, 1, 'L')
             
@@ -262,6 +298,8 @@ def add_praised_features_section(pdf: ReportPDF, praised_features: List[Dict[str
             # Feedback text (wrapped)
             feedback_text = feature.get('feedback_text', '')
             if feedback_text:
+                # Sanitize text for PDF compatibility
+                feedback_text = sanitize_text_for_pdf(feedback_text)
                 pdf.set_font('Arial', 'I', 9)
                 # Simple text wrapping
                 words = feedback_text.split()
@@ -310,9 +348,10 @@ def add_strategic_insights_section(pdf: ReportPDF, strategic_insights: Dict[str,
         for goal, insights in strategic_insights.items():
             # Goal header
             pdf.set_font('Arial', 'B', 11)
+            goal_name = sanitize_text_for_pdf(goal)
             total_impact = insights.get('total_impact', 0)
             feedback_count = insights.get('feedback_count', 0)
-            pdf.cell(0, 8, f'{goal} (Total Impact: {total_impact:.2f}, {feedback_count} items)', 0, 1, 'L')
+            pdf.cell(0, 8, f'{goal_name} (Total Impact: {total_impact:.2f}, {feedback_count} items)', 0, 1, 'L')
             
             # Metrics
             pdf.set_font('Arial', '', 9)
@@ -329,8 +368,9 @@ def add_strategic_insights_section(pdf: ReportPDF, strategic_insights: Dict[str,
             top_feedback = insights.get('top_feedback')
             if top_feedback:
                 pdf.set_font('Arial', 'I', 9)
-                theme = top_feedback.get('theme', 'Unknown')
-                feedback_text = top_feedback.get('feedback_text', '')[:100] + '...' if len(top_feedback.get('feedback_text', '')) > 100 else top_feedback.get('feedback_text', '')
+                theme = sanitize_text_for_pdf(top_feedback.get('theme', 'Unknown'))
+                feedback_text = sanitize_text_for_pdf(top_feedback.get('feedback_text', ''))
+                feedback_text = feedback_text[:100] + '...' if len(feedback_text) > 100 else feedback_text
                 pdf.cell(0, 5, f'   Top Item ({theme}): "{feedback_text}"', 0, 1, 'L')
             
             pdf.ln(2)
@@ -376,7 +416,7 @@ def add_theme_analysis_section(pdf: ReportPDF, theme_analysis: List[Dict[str, An
         # Table rows
         pdf.set_font('Arial', '', 8)
         for theme_data in theme_analysis[:10]:  # Limit to top 10 themes
-            theme = theme_data.get('theme', 'Unknown')
+            theme = sanitize_text_for_pdf(theme_data.get('theme', 'Unknown'))
             if len(theme) > 25:  # Truncate long theme names
                 theme = theme[:22] + '...'
             
