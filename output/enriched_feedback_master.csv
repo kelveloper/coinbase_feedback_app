@@ -1,0 +1,201 @@
+feedback_id,source_channel,timestamp,feedback_text,source_metric,is_relevant,sentiment_score,theme,strategic_goal
+apple-IOS-001,Apple App Store,2025-06-23 19:01:00,Loving Advanced Trade—depth charts and order book are spot on.,17,True,0.7,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-002,Apple App Store,2025-06-11 17:07:00,Loving Advanced Trade—depth charts and order book are spot on.,23,True,0.7,Trading/Execution & Fees,Growth
+apple-IOS-003,Apple App Store,2025-05-19 11:13:00,Alerting + TradingView charts make decisions faster for me.,34,True,0.7,Support Experience,CX Efficiency
+apple-IOS-004,Apple App Store,2025-05-27 08:04:00,Advanced UI is clean; limit and stop orders work exactly as expected.,25,True,0.7,Trading/Execution & Fees,Growth
+apple-IOS-005,Apple App Store,2025-03-09 01:55:00,Great upgrade from Pro; same power inside the main app.,38,True,0.7,Trading/Execution & Fees,Growth
+apple-IOS-006,Apple App Store,2025-03-14 09:27:00,Loving Advanced Trade—depth charts and order book are spot on.,32,True,0.7,Product Availability by Region,Growth
+apple-IOS-007,Apple App Store,2025-07-17 10:31:00,Advanced UI is clean; limit and stop orders work exactly as expected.,15,True,0.7,Performance/Outages,Trust&Safety
+apple-IOS-008,Apple App Store,2025-04-22 16:55:00,Loving Advanced Trade—depth charts and order book are spot on.,45,True,0.7,Support Experience,CX Efficiency
+apple-IOS-009,Apple App Store,2025-04-11 00:04:00,Fast fills on BTC/ETH; fees are clear on the receipt.,21,True,0.7,Trading/Execution & Fees,Growth
+apple-IOS-010,Apple App Store,2025-03-10 03:42:00,Loving Advanced Trade—depth charts and order book are spot on.,46,True,0.7,Performance/Outages,Trust&Safety
+apple-IOS-011,Apple App Store,2025-06-07 17:06:00,Loving Advanced Trade—depth charts and order book are spot on.,10,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+apple-IOS-012,Apple App Store,2025-08-02 22:31:00,Great upgrade from Pro; same power inside the main app.,37,True,0.7,Tax Docs & Reporting,Compliance
+apple-IOS-013,Apple App Store,2025-03-03 21:55:00,Alerting + TradingView charts make decisions faster for me.,15,True,0.7,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-014,Apple App Store,2025-06-11 10:59:00,Alerting + TradingView charts make decisions faster for me.,6,True,0.7,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-015,Apple App Store,2025-07-31 16:00:00,Loving Advanced Trade—depth charts and order book are spot on.,16,True,0.7,Performance/Outages,Trust&Safety
+apple-IOS-016,Apple App Store,2025-07-26 13:53:00,Loving Advanced Trade—depth charts and order book are spot on.,40,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+apple-IOS-017,Apple App Store,2025-07-05 04:27:00,Fast fills on BTC/ETH; fees are clear on the receipt.,22,True,0.7,Trading/Execution & Fees,Growth
+apple-IOS-018,Apple App Store,2025-05-30 00:11:00,App froze during a volatile move; missed my entry.,17,True,-0.8,Performance/Outages,Trust&Safety
+apple-IOS-019,Apple App Store,2025-02-20 21:12:00,App froze during a volatile move; missed my entry.,49,True,-0.8,Performance/Outages,Trust&Safety
+apple-IOS-020,Apple App Store,2025-03-13 19:27:00,Account recheck blocked withdrawals longer than expected.,7,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-021,Apple App Store,2025-05-18 13:04:00,Support bounced me between channels; no clear resolution path.,46,True,-0.8,Support Experience,CX Efficiency
+apple-IOS-022,Apple App Store,2025-07-09 09:25:00,Account recheck blocked withdrawals longer than expected.,50,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-023,Apple App Store,2025-06-25 21:40:00,Gas/fee estimates confusing for first on-chain transfer.,43,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+apple-IOS-024,Apple App Store,2025-08-11 12:31:00,Account recheck blocked withdrawals longer than expected.,48,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-025,Apple App Store,2025-07-07 19:20:00,Price execution feels off vs reference; need clearer spread breakdown.,28,True,-0.8,Trading/Execution & Fees,Growth
+apple-IOS-026,Apple App Store,2025-04-28 07:17:00,App froze during a volatile move; missed my entry.,8,True,-0.8,Performance/Outages,Trust&Safety
+apple-IOS-027,Apple App Store,2025-08-11 00:54:00,App froze during a volatile move; missed my entry.,19,True,-0.8,Performance/Outages,Trust&Safety
+apple-IOS-028,Apple App Store,2025-05-24 10:42:00,Support bounced me between channels; no clear resolution path.,39,True,-0.8,Support Experience,CX Efficiency
+apple-IOS-029,Apple App Store,2025-06-10 10:21:00,Gas/fee estimates confusing for first on-chain transfer.,16,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+apple-IOS-030,Apple App Store,2025-02-19 19:09:00,Price execution feels off vs reference; need clearer spread breakdown.,36,True,-0.8,Trading/Execution & Fees,Growth
+apple-IOS-031,Apple App Store,2025-02-20 09:36:00,App froze during a volatile move; missed my entry.,4,True,-0.8,Performance/Outages,Trust&Safety
+apple-IOS-032,Apple App Store,2025-06-30 13:42:00,Gas/fee estimates confusing for first on-chain transfer.,0,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+apple-IOS-033,Apple App Store,2025-07-01 15:29:00,Support bounced me between channels; no clear resolution path.,5,True,-0.8,Support Experience,CX Efficiency
+apple-IOS-034,Apple App Store,2025-04-26 19:44:00,Saw new pairs listed; undecided if I’ll trade them.,5,True,0.0,Tax Docs & Reporting,Compliance
+apple-IOS-035,Apple App Store,2025-08-02 18:23:00,Using limit orders mainly; haven’t tried advanced triggers yet.,21,True,0.0,Product Availability by Region,Growth
+apple-IOS-036,Apple App Store,2025-04-25 23:37:00,Saw new pairs listed; undecided if I’ll trade them.,14,True,0.0,Tax Docs & Reporting,Compliance
+apple-IOS-037,Apple App Store,2025-02-17 18:18:00,Saw new pairs listed; undecided if I’ll trade them.,3,True,0.0,Trading/Execution & Fees,Growth
+apple-IOS-038,Apple App Store,2025-07-06 13:38:00,Saw new pairs listed; undecided if I’ll trade them.,19,True,0.0,Tax Docs & Reporting,Compliance
+apple-IOS-039,Apple App Store,2025-07-05 02:10:00,Using bank transfer; settlement times are predictable so far.,30,True,0.0,Product Availability by Region,Growth
+apple-IOS-040,Apple App Store,2025-03-15 17:14:00,Saw new pairs listed; undecided if I’ll trade them.,3,True,0.0,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-041,Apple App Store,2025-03-06 19:02:00,Using limit orders mainly; haven’t tried advanced triggers yet.,5,True,0.0,Wallet & On-chain UX,Onchain Adoption
+apple-IOS-042,Apple App Store,2025-07-26 15:05:00,Using limit orders mainly; haven’t tried advanced triggers yet.,42,True,0.0,Onboarding/KYC & Account Holds,Compliance
+apple-IOS-043,Apple App Store,2025-06-25 00:42:00,Switched to Advanced Trade after Pro sunset; still exploring features.,23,True,0.0,Trading/Execution & Fees,Growth
+apple-IOS-044,Apple App Store,2025-03-26 09:35:00,Using bank transfer; settlement times are predictable so far.,29,True,0.0,Tax Docs & Reporting,Compliance
+apple-IOS-045,Apple App Store,2025-06-24 23:56:00,Switched to Advanced Trade after Pro sunset; still exploring features.,21,True,0.0,Trading/Execution & Fees,Growth
+apple-IOS-046,Apple App Store,2025-07-03 12:29:00,Using bank transfer; settlement times are predictable so far.,36,True,0.0,Wallet & On-chain UX,Onchain Adoption
+apple-IOS-047,Apple App Store,2025-06-20 01:08:00,Charts load fine; volume varies by pair and time of day.,6,True,0.0,Performance/Outages,Trust&Safety
+apple-IOS-048,Apple App Store,2025-05-09 21:54:00,Using bank transfer; settlement times are predictable so far.,34,True,0.0,Tax Docs & Reporting,Compliance
+apple-IOS-049,Apple App Store,2025-08-10 09:57:00,Switched to Advanced Trade after Pro sunset; still exploring features.,18,True,0.0,"Payments, Deposits & Withdrawals",CX Efficiency
+apple-IOS-050,Apple App Store,2025-07-13 04:14:00,Saw new pairs listed; undecided if I’ll trade them.,29,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+google-GP-001,Google Play Store,2025-05-23 15:06:00,Fast fills on BTC/ETH; fees are clear on the receipt.,18,True,0.7,Trading/Execution & Fees,Growth
+google-GP-002,Google Play Store,2025-04-13 19:51:00,Fast fills on BTC/ETH; fees are clear on the receipt.,16,True,0.7,Trading/Execution & Fees,Growth
+google-GP-003,Google Play Store,2025-04-06 04:50:00,Advanced UI is clean; limit and stop orders work exactly as expected.,30,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+google-GP-004,Google Play Store,2025-05-18 02:50:00,Fast fills on BTC/ETH; fees are clear on the receipt.,29,True,0.7,Trading/Execution & Fees,Growth
+google-GP-005,Google Play Store,2025-07-20 07:41:00,Fast fills on BTC/ETH; fees are clear on the receipt.,41,True,0.7,Trading/Execution & Fees,Growth
+google-GP-006,Google Play Store,2025-06-01 18:47:00,Great upgrade from Pro; same power inside the main app.,39,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+google-GP-007,Google Play Store,2025-05-26 08:12:00,Great upgrade from Pro; same power inside the main app.,41,True,0.7,Wallet & On-chain UX,Onchain Adoption
+google-GP-008,Google Play Store,2025-05-09 04:50:00,Alerting + TradingView charts make decisions faster for me.,8,True,0.7,Onboarding/KYC & Account Holds,Compliance
+google-GP-009,Google Play Store,2025-06-01 16:07:00,Alerting + TradingView charts make decisions faster for me.,32,True,0.7,Wallet & On-chain UX,Onchain Adoption
+google-GP-010,Google Play Store,2025-05-27 13:43:00,Alerting + TradingView charts make decisions faster for me.,4,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+google-GP-011,Google Play Store,2025-06-04 03:50:00,Loving Advanced Trade—depth charts and order book are spot on.,26,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+google-GP-012,Google Play Store,2025-03-07 02:27:00,Fast fills on BTC/ETH; fees are clear on the receipt.,3,True,0.7,Trading/Execution & Fees,Growth
+google-GP-013,Google Play Store,2025-05-15 03:36:00,Alerting + TradingView charts make decisions faster for me.,6,True,0.7,Performance/Outages,Trust&Safety
+google-GP-014,Google Play Store,2025-02-20 19:59:00,Fast fills on BTC/ETH; fees are clear on the receipt.,21,True,0.7,Trading/Execution & Fees,Growth
+google-GP-015,Google Play Store,2025-06-10 10:10:00,Fast fills on BTC/ETH; fees are clear on the receipt.,38,True,0.7,Trading/Execution & Fees,Growth
+google-GP-016,Google Play Store,2025-03-15 11:27:00,Loving Advanced Trade—depth charts and order book are spot on.,31,True,0.7,Onboarding/KYC & Account Holds,Compliance
+google-GP-017,Google Play Store,2025-06-21 23:27:00,Alerting + TradingView charts make decisions faster for me.,32,True,0.7,Wallet & On-chain UX,Onchain Adoption
+google-GP-018,Google Play Store,2025-05-28 22:40:00,Gas/fee estimates confusing for first on-chain transfer.,20,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+google-GP-019,Google Play Store,2025-05-04 23:21:00,App froze during a volatile move; missed my entry.,32,True,-0.8,Performance/Outages,Trust&Safety
+google-GP-020,Google Play Store,2025-07-18 04:48:00,Price execution feels off vs reference; need clearer spread breakdown.,29,True,-0.8,Trading/Execution & Fees,Growth
+google-GP-021,Google Play Store,2025-06-14 14:40:00,Gas/fee estimates confusing for first on-chain transfer.,32,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+google-GP-022,Google Play Store,2025-07-12 17:50:00,Price execution feels off vs reference; need clearer spread breakdown.,41,True,-0.8,Trading/Execution & Fees,Growth
+google-GP-023,Google Play Store,2025-02-24 07:45:00,App froze during a volatile move; missed my entry.,10,True,-0.8,Performance/Outages,Trust&Safety
+google-GP-024,Google Play Store,2025-04-27 08:46:00,Account recheck blocked withdrawals longer than expected.,22,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+google-GP-025,Google Play Store,2025-03-09 20:42:00,Account recheck blocked withdrawals longer than expected.,11,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+google-GP-026,Google Play Store,2025-02-23 21:21:00,App froze during a volatile move; missed my entry.,44,True,-0.8,Performance/Outages,Trust&Safety
+google-GP-027,Google Play Store,2025-04-14 17:15:00,Gas/fee estimates confusing for first on-chain transfer.,23,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+google-GP-028,Google Play Store,2025-02-27 20:30:00,Gas/fee estimates confusing for first on-chain transfer.,7,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+google-GP-029,Google Play Store,2025-05-31 01:25:00,Account recheck blocked withdrawals longer than expected.,23,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+google-GP-030,Google Play Store,2025-08-13 15:28:00,App froze during a volatile move; missed my entry.,9,True,-0.8,Performance/Outages,Trust&Safety
+google-GP-031,Google Play Store,2025-03-14 15:38:00,Gas/fee estimates confusing for first on-chain transfer.,27,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+google-GP-032,Google Play Store,2025-07-05 00:24:00,Price execution feels off vs reference; need clearer spread breakdown.,16,True,-0.8,Trading/Execution & Fees,Growth
+google-GP-033,Google Play Store,2025-07-28 05:53:00,Price execution feels off vs reference; need clearer spread breakdown.,4,True,-0.8,Trading/Execution & Fees,Growth
+google-GP-034,Google Play Store,2025-07-29 06:18:00,Charts load fine; volume varies by pair and time of day.,17,True,0.0,Performance/Outages,Trust&Safety
+google-GP-035,Google Play Store,2025-03-07 23:27:00,Switched to Advanced Trade after Pro sunset; still exploring features.,34,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+google-GP-036,Google Play Store,2025-07-21 13:17:00,Saw new pairs listed; undecided if I’ll trade them.,23,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+google-GP-037,Google Play Store,2025-07-18 04:43:00,Using bank transfer; settlement times are predictable so far.,36,True,0.0,Trading/Execution & Fees,Growth
+google-GP-038,Google Play Store,2025-08-13 14:13:00,Using limit orders mainly; haven’t tried advanced triggers yet.,4,True,0.0,Performance/Outages,Trust&Safety
+google-GP-039,Google Play Store,2025-05-01 05:45:00,Charts load fine; volume varies by pair and time of day.,12,True,0.0,Performance/Outages,Trust&Safety
+google-GP-040,Google Play Store,2025-06-28 13:49:00,Using limit orders mainly; haven’t tried advanced triggers yet.,41,True,0.0,Support Experience,CX Efficiency
+google-GP-041,Google Play Store,2025-03-17 16:09:00,Switched to Advanced Trade after Pro sunset; still exploring features.,22,True,0.0,Tax Docs & Reporting,Compliance
+google-GP-042,Google Play Store,2025-03-25 05:42:00,Using bank transfer; settlement times are predictable so far.,5,True,0.0,Wallet & On-chain UX,Onchain Adoption
+google-GP-043,Google Play Store,2025-05-01 14:04:00,Switched to Advanced Trade after Pro sunset; still exploring features.,29,True,0.0,Wallet & On-chain UX,Onchain Adoption
+google-GP-044,Google Play Store,2025-04-16 14:07:00,Using limit orders mainly; haven’t tried advanced triggers yet.,3,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+google-GP-045,Google Play Store,2025-06-13 15:56:00,Saw new pairs listed; undecided if I’ll trade them.,32,True,0.0,Product Availability by Region,Growth
+google-GP-046,Google Play Store,2025-06-04 04:56:00,Charts load fine; volume varies by pair and time of day.,2,True,0.0,Performance/Outages,Trust&Safety
+google-GP-047,Google Play Store,2025-03-16 04:06:00,Charts load fine; volume varies by pair and time of day.,35,True,0.0,Performance/Outages,Trust&Safety
+google-GP-048,Google Play Store,2025-05-08 19:20:00,Saw new pairs listed; undecided if I’ll trade them.,37,True,0.0,Trading/Execution & Fees,Growth
+google-GP-049,Google Play Store,2025-07-16 15:16:00,Saw new pairs listed; undecided if I’ll trade them.,33,True,0.0,Performance/Outages,Trust&Safety
+google-GP-050,Google Play Store,2025-06-22 19:58:00,Using bank transfer; settlement times are predictable so far.,13,True,0.0,Product Availability by Region,Growth
+twitter-TW-001,Twitter (X),2025-06-05 21:08:00,Finally set bracket orders directly—smooth UX.,148860,True,0.7,Performance/Outages,Trust&Safety
+twitter-TW-002,Twitter (X),2025-07-01 11:49:00,Charts + order book visibility are clutch for scalps.,106574,True,0.7,Tax Docs & Reporting,Compliance
+twitter-TW-003,Twitter (X),2025-06-25 01:43:00,Coinbase Advanced fills were instant during the spike. Nice.,93265,True,0.7,Trading/Execution & Fees,Growth
+twitter-TW-004,Twitter (X),2025-05-27 11:43:00,Fee breakdowns on receipts make sense now.,34276,True,0.7,Performance/Outages,Trust&Safety
+twitter-TW-005,Twitter (X),2025-02-26 05:59:00,Charts + order book visibility are clutch for scalps.,11202,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+twitter-TW-006,Twitter (X),2025-04-30 15:26:00,Coinbase Advanced fills were instant during the spike. Nice.,64441,True,0.7,Product Availability by Region,Growth
+twitter-TW-007,Twitter (X),2025-07-03 15:22:00,Fee breakdowns on receipts make sense now.,94149,True,0.7,Trading/Execution & Fees,Growth
+twitter-TW-008,Twitter (X),2025-03-11 07:42:00,Finally set bracket orders directly—smooth UX.,61027,True,0.7,Onboarding/KYC & Account Holds,Compliance
+twitter-TW-009,Twitter (X),2025-08-12 11:36:00,Love the new pairs—liquidity looks solid.,7404,True,0.7,Product Availability by Region,Growth
+twitter-TW-010,Twitter (X),2025-03-31 10:03:00,Charts + order book visibility are clutch for scalps.,34217,True,0.7,Trading/Execution & Fees,Growth
+twitter-TW-011,Twitter (X),2025-06-18 20:20:00,Love the new pairs—liquidity looks solid.,114532,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+twitter-TW-012,Twitter (X),2025-02-22 05:38:00,Charts + order book visibility are clutch for scalps.,102665,True,0.7,Support Experience,CX Efficiency
+twitter-TW-013,Twitter (X),2025-02-16 08:13:00,Coinbase Advanced fills were instant during the spike. Nice.,88024,True,0.7,Tax Docs & Reporting,Compliance
+twitter-TW-014,Twitter (X),2025-07-30 21:14:00,Coinbase Advanced fills were instant during the spike. Nice.,125705,True,0.7,Onboarding/KYC & Account Holds,Compliance
+twitter-TW-015,Twitter (X),2025-02-21 13:41:00,Charts + order book visibility are clutch for scalps.,126556,True,0.7,Wallet & On-chain UX,Onchain Adoption
+twitter-TW-016,Twitter (X),2025-07-10 17:53:00,Coinbase Advanced fills were instant during the spike. Nice.,13021,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+twitter-TW-017,Twitter (X),2025-05-26 15:31:00,Coinbase Advanced fills were instant during the spike. Nice.,30289,True,0.7,Wallet & On-chain UX,Onchain Adoption
+twitter-TW-018,Twitter (X),2025-08-11 21:06:00,Support replies feel canned—need a human on escalations.,16168,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-019,Twitter (X),2025-05-26 22:02:00,App stalled right when volatility hit. Brutal.,78352,True,-0.8,Performance/Outages,Trust&Safety
+twitter-TW-020,Twitter (X),2025-07-24 04:53:00,App stalled right when volatility hit. Brutal.,114145,True,-0.8,"Payments, Deposits & Withdrawals",CX Efficiency
+twitter-TW-021,Twitter (X),2025-05-31 04:09:00,Support replies feel canned—need a human on escalations.,110004,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-022,Twitter (X),2025-03-30 08:25:00,Gas estimate shocked me on first onchain transfer.,124016,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+twitter-TW-023,Twitter (X),2025-04-26 15:54:00,Execution looked worse than my benchmark—need clarity on spread.,79454,True,-0.8,Trading/Execution & Fees,Growth
+twitter-TW-024,Twitter (X),2025-05-20 01:32:00,Support replies feel canned—need a human on escalations.,127008,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-025,Twitter (X),2025-05-17 22:12:00,Support replies feel canned—need a human on escalations.,119665,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-026,Twitter (X),2025-08-09 02:18:00,Execution looked worse than my benchmark—need clarity on spread.,67816,True,-0.8,Trading/Execution & Fees,Growth
+twitter-TW-027,Twitter (X),2025-02-16 07:16:00,App stalled right when volatility hit. Brutal.,45413,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-028,Twitter (X),2025-08-02 11:35:00,Support replies feel canned—need a human on escalations.,1936,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-029,Twitter (X),2025-04-16 01:51:00,Support replies feel canned—need a human on escalations.,39313,True,-0.8,Support Experience,CX Efficiency
+twitter-TW-030,Twitter (X),2025-04-11 21:34:00,App stalled right when volatility hit. Brutal.,49795,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+twitter-TW-031,Twitter (X),2025-05-10 20:05:00,Why is withdrawal still pending after KYC refresh?,48000,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+twitter-TW-032,Twitter (X),2025-06-22 03:55:00,Why is withdrawal still pending after KYC refresh?,123799,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+twitter-TW-033,Twitter (X),2025-05-10 20:11:00,App stalled right when volatility hit. Brutal.,21194,True,-0.8,Trading/Execution & Fees,Growth
+twitter-TW-034,Twitter (X),2025-02-15 01:34:00,"Limit orders only for now, seeing how it behaves.",125157,True,0.0,Trading/Execution & Fees,Growth
+twitter-TW-035,Twitter (X),2025-02-25 09:18:00,"Limit orders only for now, seeing how it behaves.",43793,True,0.0,Onboarding/KYC & Account Holds,Compliance
+twitter-TW-036,Twitter (X),2025-02-19 18:32:00,Saw incident on status page; will retry later.,34404,True,0.0,Trading/Execution & Fees,Growth
+twitter-TW-037,Twitter (X),2025-03-17 17:16:00,Saw incident on status page; will retry later.,116484,True,0.0,Wallet & On-chain UX,Onchain Adoption
+twitter-TW-038,Twitter (X),2025-03-15 03:31:00,New listing announced; watching volume.,30873,True,0.0,Product Availability by Region,Growth
+twitter-TW-039,Twitter (X),2025-07-10 21:31:00,"Limit orders only for now, seeing how it behaves.",23341,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+twitter-TW-040,Twitter (X),2025-05-05 13:47:00,Testing Advanced today; moving from Pro.,94438,True,0.0,Wallet & On-chain UX,Onchain Adoption
+twitter-TW-041,Twitter (X),2025-04-24 12:44:00,"Limit orders only for now, seeing how it behaves.",104933,True,0.0,Trading/Execution & Fees,Growth
+twitter-TW-042,Twitter (X),2025-05-22 11:39:00,Testing Advanced today; moving from Pro.,47526,True,0.0,Trading/Execution & Fees,Growth
+twitter-TW-043,Twitter (X),2025-08-04 10:33:00,Saw incident on status page; will retry later.,148124,True,0.0,"Payments, Deposits & Withdrawals",CX Efficiency
+twitter-TW-044,Twitter (X),2025-06-14 15:55:00,"Limit orders only for now, seeing how it behaves.",41147,True,0.0,Tax Docs & Reporting,Compliance
+twitter-TW-045,Twitter (X),2025-05-05 03:31:00,New listing announced; watching volume.,130677,True,0.0,Wallet & On-chain UX,Onchain Adoption
+twitter-TW-046,Twitter (X),2025-05-18 01:52:00,Testing Advanced today; moving from Pro.,119602,True,0.0,Performance/Outages,Trust&Safety
+twitter-TW-047,Twitter (X),2025-06-27 11:44:00,Comparing fees vs. my other venue tonight.,76551,True,0.0,Trading/Execution & Fees,Growth
+twitter-TW-048,Twitter (X),2025-07-26 21:37:00,Saw incident on status page; will retry later.,108660,True,0.0,"Payments, Deposits & Withdrawals",CX Efficiency
+twitter-TW-049,Twitter (X),2025-07-12 05:46:00,Comparing fees vs. my other venue tonight.,46462,True,0.0,Trading/Execution & Fees,Growth
+twitter-TW-050,Twitter (X),2025-03-20 04:26:00,Comparing fees vs. my other venue tonight.,77125,True,0.0,Trading/Execution & Fees,Growth
+sales-INT-001,Internal Sales Notes,2025-04-18 08:35:00,Pricing acceptable with volume tiers; legal review clean.,20000,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-002,Internal Sales Notes,2025-03-06 11:59:00,Migration plan from Pro approved; internal champions identified.,20000,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-003,Internal Sales Notes,2025-06-14 03:43:00,Pricing acceptable with volume tiers; legal review clean.,0,True,0.7,Wallet & On-chain UX,Onchain Adoption
+sales-INT-004,Internal Sales Notes,2025-05-26 15:11:00,Migration plan from Pro approved; internal champions identified.,20000,True,0.7,Support Experience,CX Efficiency
+sales-INT-005,Internal Sales Notes,2025-06-11 20:16:00,Pricing acceptable with volume tiers; legal review clean.,0,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+sales-INT-006,Internal Sales Notes,2025-04-15 14:48:00,Advanced order types matched competitor; trader desk satisfied.,20000,True,0.7,Trading/Execution & Fees,Growth
+sales-INT-007,Internal Sales Notes,2025-07-21 07:14:00,API latency met sub-50ms target; ready for scale testing.,50000,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-008,Internal Sales Notes,2025-07-08 03:03:00,Migration plan from Pro approved; internal champions identified.,120000,True,0.7,Performance/Outages,Trust&Safety
+sales-INT-009,Internal Sales Notes,2025-07-07 14:43:00,Advanced order types matched competitor; trader desk satisfied.,250000,True,0.7,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-010,Internal Sales Notes,2025-05-22 14:55:00,Advanced order types matched competitor; trader desk satisfied.,50000,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+sales-INT-011,Internal Sales Notes,2025-04-13 07:29:00,API latency met sub-50ms target; ready for scale testing.,20000,True,0.7,"Payments, Deposits & Withdrawals",CX Efficiency
+sales-INT-012,Internal Sales Notes,2025-06-22 09:14:00,Pricing acceptable with volume tiers; legal review clean.,250000,True,0.7,Onboarding/KYC & Account Holds,Compliance
+sales-INT-013,Internal Sales Notes,2025-05-13 20:42:00,API latency met sub-50ms target; ready for scale testing.,120000,True,0.7,Support Experience,CX Efficiency
+sales-INT-014,Internal Sales Notes,2025-04-17 08:13:00,API latency met sub-50ms target; ready for scale testing.,0,True,0.7,Product Availability by Region,Growth
+sales-INT-015,Internal Sales Notes,2025-04-03 23:07:00,Advanced order types matched competitor; trader desk satisfied.,50000,True,0.7,Onboarding/KYC & Account Holds,Compliance
+sales-INT-016,Internal Sales Notes,2025-05-30 01:36:00,Advanced order types matched competitor; trader desk satisfied.,250000,True,0.7,Performance/Outages,Trust&Safety
+sales-INT-017,Internal Sales Notes,2025-05-15 05:08:00,Pricing acceptable with volume tiers; legal review clean.,50000,True,0.7,Product Availability by Region,Growth
+sales-INT-018,Internal Sales Notes,2025-08-03 19:58:00,Blocked by compliance review on KYC refresh cadence; timeline unclear.,50000,True,-0.8,"Payments, Deposits & Withdrawals",CX Efficiency
+sales-INT-019,Internal Sales Notes,2025-04-04 19:33:00,Settlement times for fiat withdrawals not meeting expectations.,20000,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+sales-INT-020,Internal Sales Notes,2025-02-28 20:00:00,Settlement times for fiat withdrawals not meeting expectations.,0,True,-0.8,Tax Docs & Reporting,Compliance
+sales-INT-021,Internal Sales Notes,2025-05-05 00:13:00,Blocked by compliance review on KYC refresh cadence; timeline unclear.,250000,True,-0.8,Performance/Outages,Trust&Safety
+sales-INT-022,Internal Sales Notes,2025-04-14 02:21:00,Missing feature: OCO with trailing stop in one ticket.,120000,True,-0.8,Support Experience,CX Efficiency
+sales-INT-023,Internal Sales Notes,2025-05-22 22:50:00,Support SLA escalation during incident; CFO flagged risk.,250000,True,-0.8,Tax Docs & Reporting,Compliance
+sales-INT-024,Internal Sales Notes,2025-07-16 19:50:00,Blocked by compliance review on KYC refresh cadence; timeline unclear.,50000,True,-0.8,Onboarding/KYC & Account Holds,Compliance
+sales-INT-025,Internal Sales Notes,2025-06-17 02:23:00,Blocked by compliance review on KYC refresh cadence; timeline unclear.,5000,True,-0.8,Performance/Outages,Trust&Safety
+sales-INT-026,Internal Sales Notes,2025-08-10 06:30:00,Execution quality concerns vs. benchmark; asks for post-trade transparency.,50000,True,-0.8,Tax Docs & Reporting,Compliance
+sales-INT-027,Internal Sales Notes,2025-04-29 22:04:00,Execution quality concerns vs. benchmark; asks for post-trade transparency.,50000,True,-0.8,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-028,Internal Sales Notes,2025-07-01 19:40:00,Execution quality concerns vs. benchmark; asks for post-trade transparency.,0,True,-0.8,Wallet & On-chain UX,Onchain Adoption
+sales-INT-029,Internal Sales Notes,2025-06-12 21:37:00,Blocked by compliance review on KYC refresh cadence; timeline unclear.,5000,True,-0.8,Product Availability by Region,Growth
+sales-INT-030,Internal Sales Notes,2025-03-03 09:02:00,Support SLA escalation during incident; CFO flagged risk.,0,True,-0.8,Product Availability by Region,Growth
+sales-INT-031,Internal Sales Notes,2025-06-09 18:27:00,Execution quality concerns vs. benchmark; asks for post-trade transparency.,250000,True,-0.8,Performance/Outages,Trust&Safety
+sales-INT-032,Internal Sales Notes,2025-03-15 11:22:00,Missing feature: OCO with trailing stop in one ticket.,120000,True,-0.8,"Payments, Deposits & Withdrawals",CX Efficiency
+sales-INT-033,Internal Sales Notes,2025-07-29 05:35:00,Blocked by compliance review on KYC refresh cadence; timeline unclear.,20000,True,-0.8,Trading/Execution & Fees,Growth
+sales-INT-034,Internal Sales Notes,2025-07-08 00:50:00,Legal asks for data residency statement and audit artifacts.,20000,True,0.0,Onboarding/KYC & Account Holds,Compliance
+sales-INT-035,Internal Sales Notes,2025-04-10 13:06:00,Pilot proposed with 10 active traders; success criteria drafted.,250000,True,0.0,Trading/Execution & Fees,Growth
+sales-INT-036,Internal Sales Notes,2025-04-07 06:51:00,Pilot proposed with 10 active traders; success criteria drafted.,20000,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-037,Internal Sales Notes,2025-03-19 07:09:00,Comparative eval vs. two vendors; collecting references.,5000,True,0.0,"Security, Fraud & Phishing",Trust&Safety
+sales-INT-038,Internal Sales Notes,2025-03-09 23:29:00,Legal asks for data residency statement and audit artifacts.,250000,True,0.0,Wallet & On-chain UX,Onchain Adoption
+sales-INT-039,Internal Sales Notes,2025-06-11 00:07:00,Comparative eval vs. two vendors; collecting references.,5000,True,0.0,Product Availability by Region,Growth
+sales-INT-040,Internal Sales Notes,2025-08-12 07:27:00,Comparative eval vs. two vendors; collecting references.,250000,True,0.0,Trading/Execution & Fees,Growth
+sales-INT-041,Internal Sales Notes,2025-03-12 03:20:00,Stakeholders aligned on scope; waiting for security questionnaire.,20000,True,0.0,Trading/Execution & Fees,Growth
+sales-INT-042,Internal Sales Notes,2025-03-17 18:46:00,Stakeholders aligned on scope; waiting for security questionnaire.,50000,True,0.0,Performance/Outages,Trust&Safety
+sales-INT-043,Internal Sales Notes,2025-07-29 01:50:00,Stakeholders aligned on scope; waiting for security questionnaire.,5000,True,0.0,Support Experience,CX Efficiency
+sales-INT-044,Internal Sales Notes,2025-07-14 02:00:00,Finance requested fee simulation across volume tiers.,0,True,0.0,"Payments, Deposits & Withdrawals",CX Efficiency
+sales-INT-045,Internal Sales Notes,2025-07-30 21:41:00,Legal asks for data residency statement and audit artifacts.,250000,True,0.0,Product Availability by Region,Growth
+sales-INT-046,Internal Sales Notes,2025-04-21 05:23:00,Stakeholders aligned on scope; waiting for security questionnaire.,20000,True,0.0,Product Availability by Region,Growth
+sales-INT-047,Internal Sales Notes,2025-08-05 23:07:00,Finance requested fee simulation across volume tiers.,120000,True,0.0,Wallet & On-chain UX,Onchain Adoption
+sales-INT-048,Internal Sales Notes,2025-03-05 18:23:00,Stakeholders aligned on scope; waiting for security questionnaire.,250000,True,0.0,Tax Docs & Reporting,Compliance
+sales-INT-049,Internal Sales Notes,2025-06-12 11:37:00,Stakeholders aligned on scope; waiting for security questionnaire.,5000,True,0.0,Product Availability by Region,Growth
+sales-INT-050,Internal Sales Notes,2025-04-15 13:31:00,Stakeholders aligned on scope; waiting for security questionnaire.,5000,True,0.0,Product Availability by Region,Growth
