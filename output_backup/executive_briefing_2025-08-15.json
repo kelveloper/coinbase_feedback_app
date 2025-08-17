@@ -1,0 +1,26 @@
+{
+  "date": "2025-08-15",
+  "summary": {
+    "total_feedback": 200,
+    "average_impact_score": 2.4604,
+    "negative_sentiment_percentage": 32.0,
+    "data_sources": 4
+  },
+  "top_concerns": {
+    "Performance/Outages": 70.42,
+    "Support Experience": 68.67,
+    "Trading/Execution & Fees": 62.44
+  },
+  "top_successes": {
+    "Trading/Execution & Fees": 9.33,
+    "Performance/Outages": 5.26,
+    "Payments, Deposits & Withdrawals": 4.12
+  },
+  "strategic_alignment": {
+    "Growth": 29.0,
+    "Trust&Safety": 22.5,
+    "Compliance": 19.0,
+    "CX Efficiency": 17.0,
+    "Onchain Adoption": 12.5
+  }
+}

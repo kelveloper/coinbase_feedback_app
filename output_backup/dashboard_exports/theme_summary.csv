@@ -1,0 +1,10 @@
+theme,count,avg_impact,total_impact,positive_count,negative_count
+Onboarding/KYC & Account Holds,24,2.1839,52.414,9,11
+"Payments, Deposits & Withdrawals",16,1.7394,27.8311,9,3
+Performance/Outages,30,3.2686,98.0574,8,13
+Product Availability by Region,17,0.6674,11.3462,5,2
+"Security, Fraud & Phishing",15,1.0292,15.4375,7,1
+Support Experience,18,4.0767,73.3801,5,11
+Tax Docs & Reporting,14,1.8866,26.4126,3,3
+Trading/Execution & Fees,41,2.4894,102.0644,16,10
+Wallet & On-chain UX,25,3.4056,85.1397,6,10

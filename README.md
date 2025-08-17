@@ -27,7 +27,29 @@ The engine processes customer feedback through a modular pipeline:
 - Python 3.8 or higher
 - pip package manager
 
-### Quick Setup
+### Option 1: Docker (Recommended for Teams) 🐳
+
+**Prerequisites**: Docker Desktop installed and running
+
+```bash
+# Quick start - launch dashboard
+docker-compose up --build
+
+# Access dashboard at: http://localhost:8501
+```
+
+**Benefits of Docker approach**:
+- ✅ Consistent environment across all team members
+- ✅ No Python/dependency installation needed  
+- ✅ Isolated development environment
+- ✅ Production parity
+- ✅ One-command setup for new team members
+
+See [DOCKER.md](DOCKER.md) for complete Docker guide.
+
+### Option 2: Local Python Installation
+
+**Prerequisites**: Python 3.8+ and pip
 
 1. **Clone or navigate to the project directory**
 
