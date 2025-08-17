@@ -1,16 +1,8 @@
 """
-Secure Dashboard Application with Authentication
+Simple Secure Dashboard - Fallback Authentication
 
-This is the main entry point for the authenticated dashboard.
-Run with: streamlit run src/dashboard/secure_dashboard.py
-
-Features:
-- Login/logout functionality
-- Role-based access control (Admin, Analyst, Viewer)
-- Session management
-- Secure password hashing
-
-Implementation time: 1 hour
+This version uses a custom authentication system that's guaranteed to work.
+Run with: streamlit run src/dashboard/simple_secure_dashboard.py
 """
 
 import streamlit as st
@@ -21,7 +13,8 @@ from typing import Optional
 # Add src directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from auth.auth_config import get_authenticator, get_user_role, has_permission, get_user_info
+from auth.simple_auth import check_authentication, show_logout_button, get_user_info
+from auth.auth_config import get_user_role, has_permission
 from dashboard.dashboard import (
     load_and_process_data,
     display_main_dashboard,
@@ -35,30 +28,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-def show_login_page():
-    """Display the login page"""
-    st.title("🔐 Advanced Trade Insight Engine")
-    st.subheader("Secure Access Portal")
-    
-    # Login instructions
-    st.info("**Demo Credentials:**")
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.write("**👑 Admin Access**")
-        st.code("Username: admin\nPassword: admin123")
-        st.caption("Full system access")
-    
-    with col2:
-        st.write("**📊 Analyst Access**") 
-        st.code("Username: analyst\nPassword: analyst123")
-        st.caption("Dashboard + Reports")
-    
-    with col3:
-        st.write("**👀 Viewer Access**")
-        st.code("Username: viewer\nPassword: viewer123") 
-        st.caption("Read-only access")
 
 def show_user_info_sidebar(name: str, username: str, role: str):
     """Display user information in sidebar"""
@@ -152,42 +121,20 @@ def show_role_specific_features(role: str):
             st.write("❌ User management")
 
 def main():
-    """Main application with authentication"""
+    """Main application with simple authentication"""
     
-    # Initialize authenticator
-    authenticator = get_authenticator()
+    # Check authentication
+    name, authentication_status, username = check_authentication()
     
-    # Login widget
-    try:
-        name, authentication_status, username = authenticator.login('Login')
-    except Exception as e:
-        st.error(f"Login system error: {e}")
-        name, authentication_status, username = None, None, None
-    
-    # Handle authentication states
-    if authentication_status == False:
-        st.error('Username/password is incorrect')
-        show_login_page()
-        
-    elif authentication_status == None:
-        st.warning('Please enter your username and password')
-        show_login_page()
-        
-    elif authentication_status == True:
+    if authentication_status == True and username:
         # User is authenticated
         user_role = get_user_role(username)
-        user_info = get_user_info(username)
         
         # Show user info in sidebar
         show_user_info_sidebar(name, username, user_role)
         
         # Logout button
-        try:
-            authenticator.logout('Logout', 'sidebar')
-        except:
-            if st.sidebar.button('Logout'):
-                st.session_state.clear()
-                st.rerun()
+        show_logout_button()
         
         # Role-specific welcome message
         st.title(f"📊 Advanced Trade Insight Engine")
@@ -214,7 +161,6 @@ def main():
                     st.sidebar.subheader("🔒 Session Info")
                     st.sidebar.write(f"**Records:** {len(df):,}")
                     st.sidebar.write(f"**Sources:** {df['source_channel'].nunique()}")
-                    st.sidebar.write(f"**Login Time:** {st.session_state.get('login_time', 'Unknown')}")
                     
                 else:
                     st.error("Access denied - Invalid role configuration")
@@ -225,11 +171,10 @@ def main():
         except Exception as e:
             st.error(f"Dashboard error: {str(e)}")
             display_error_page(f"Application error: {str(e)}")
+    
+    else:
+        # User is not authenticated - login form is already shown by check_authentication()
+        pass
 
 if __name__ == "__main__":
-    # Store login time
-    if 'login_time' not in st.session_state:
-        import datetime
-        st.session_state.login_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
     main()

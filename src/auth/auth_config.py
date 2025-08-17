@@ -109,12 +109,12 @@ def get_authenticator():
     for username in config['credentials']['usernames']:
         config['credentials']['usernames'][username]['password'] = hashed_passwords[username]
     
-    # Create authenticator
+    # Create authenticator with correct parameter order
     authenticator = stauth.Authenticate(
-        config['credentials'],
-        config['cookie']['name'],
-        config['cookie']['key'],
-        config['cookie']['expiry_days']
+        credentials=config['credentials'],
+        cookie_name=config['cookie']['name'],
+        cookie_key=config['cookie']['key'],
+        cookie_expiry_days=config['cookie']['expiry_days']
     )
     
     return authenticator

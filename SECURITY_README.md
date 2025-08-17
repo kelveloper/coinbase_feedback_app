@@ -30,7 +30,11 @@
 
 #### **Run Secure Dashboard:**
 ```bash
+# Primary secure dashboard (streamlit-authenticator)
 streamlit run src/dashboard/secure_dashboard.py
+
+# Fallback secure dashboard (custom auth - guaranteed to work)
+streamlit run src/dashboard/simple_secure_dashboard.py
 ```
 
 #### **Demo Credentials:**
