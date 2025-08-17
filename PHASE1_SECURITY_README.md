@@ -95,7 +95,7 @@ logs/                         # Audit log directory
 ```
 
 ### **Integration:**
-- Updated `src/dashboard/simple_secure_dashboard.py` with security integration
+- Updated `src/dashboard/enhanced_feedback_dashboard.py` with security integration
 
 ---
 
@@ -103,8 +103,8 @@ logs/                         # Audit log directory
 
 ### **Run Secure Dashboard:**
 ```bash
-# With Phase 1 security features
-streamlit run src/dashboard/simple_secure_dashboard.py
+# With Phase 1 security features integrated into enhanced dashboard
+streamlit run src/dashboard/enhanced_feedback_dashboard.py
 ```
 
 ### **Test Security Features:**

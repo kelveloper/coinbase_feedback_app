@@ -30,11 +30,8 @@
 
 #### **Run Secure Dashboard:**
 ```bash
-# Primary secure dashboard (streamlit-authenticator)
-streamlit run src/dashboard/secure_dashboard.py
-
-# Fallback secure dashboard (custom auth - guaranteed to work)
-streamlit run src/dashboard/simple_secure_dashboard.py
+# Secure Enhanced Feedback Dashboard (with multiple auth fallbacks)
+streamlit run src/dashboard/enhanced_feedback_dashboard.py
 ```
 
 #### **Demo Credentials:**
@@ -49,7 +46,7 @@ streamlit run src/dashboard/simple_secure_dashboard.py
 #### **Authentication Module:**
 - `src/auth/__init__.py` - Auth module init
 - `src/auth/auth_config.py` - User config & permissions
-- `src/dashboard/secure_dashboard.py` - Secure dashboard entry point
+- `src/dashboard/enhanced_feedback_dashboard.py` - Secure enhanced dashboard entry point
 
 #### **Tests:**
 - `tests/test_auth/__init__.py` - Test package init
@@ -145,4 +142,4 @@ python3 -m pytest tests/test_auth/ -v
 
 ---
 
-**Next Steps:** Run `streamlit run src/dashboard/secure_dashboard.py` and test with the demo credentials above!
+**Next Steps:** Run `streamlit run src/dashboard/enhanced_feedback_dashboard.py` and test with the demo credentials above!
