@@ -21,6 +21,11 @@ from dashboard.dashboard import (
     display_error_page
 )
 
+# Phase 1 Security Integration
+from security.audit_logger import AuditLogger, AuditEventType, audit_action
+from security.input_validator import validate_csv_upload
+from security.security_headers import inject_security_headers_streamlit, initialize_https
+
 # Page configuration
 st.set_page_config(
     page_title="🔐 Secure Trade Insight Engine",
@@ -121,20 +126,32 @@ def show_role_specific_features(role: str):
             st.write("❌ User management")
 
 def main():
-    """Main application with simple authentication"""
+    """Main application with simple authentication and Phase 1 security"""
+    
+    # Initialize security features
+    inject_security_headers_streamlit()
     
     # Check authentication
     name, authentication_status, username = check_authentication()
     
     if authentication_status == True and username:
+        # Log successful authentication
+        AuditLogger.log_login_success(username)
+        AuditLogger.log_dashboard_view(username, "main_dashboard")
+        
         # User is authenticated
         user_role = get_user_role(username)
         
         # Show user info in sidebar
         show_user_info_sidebar(name, username, user_role)
         
-        # Logout button
-        show_logout_button()
+        # Logout button with audit logging
+        if st.sidebar.button("🚪 Logout"):
+            AuditLogger.log_logout(username)
+            st.session_state.authenticated = False
+            st.session_state.username = None
+            st.session_state.user_info = None
+            st.rerun()
         
         # Role-specific welcome message
         st.title(f"📊 Advanced Trade Insight Engine")
@@ -144,9 +161,13 @@ def main():
         show_role_specific_features(user_role)
         
         try:
-            # Load and process data
+            # Load and process data with audit logging
             with st.spinner("Loading secure dashboard..."):
                 df = load_and_process_data('csv_mock_data')
+                
+                if df is not None and not df.empty:
+                    # Log data access
+                    AuditLogger.log_data_access(username, 'csv_mock_data', len(df))
             
             if df is not None and not df.empty:
                 # Get role-based configuration
