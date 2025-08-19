@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dashboard Cards</title>
+    <style>
+        :root {
+          --background-color: #0d0e12;
+          --card-background: #1c1e21;
+          --text-primary: #f8f8f8;
+          --text-secondary: #9aa0a6;
+          --positive-color: #28a745;
+          --negative-color: #dc3545;
+          --border-color: #2d3036;
+        }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          background-color: var(--background-color);
+          color: var(--text-primary);
+          margin: 0;
+          padding: 20px;
+          font-weight: 200;
+        }
+
+        /* Global Font Weight Override */
+        * {
+          font-weight: 200;
+        }
+
+        /* Specific Element Font Weights */
+        h1, h2, h3, h4, h5, h6 {
+          font-weight: 200;
+        }
+
+        p, span, div, label, input, button, select, textarea {
+          font-weight: 200;
+        }
+
+        .card-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: flex-start;
+        }
+
+        .dashboard-card {
+          background-color: var(--card-background);
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          padding: 24px;
+          flex: 1;
+          min-width: 250px;
+          max-width: calc(33.33% - 14px);
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+
+        .card-title {
+          font-size: 16px;
+          font-weight: 500;
+          color: var(--text-secondary);
+        }
+
+        .icon-placeholder {
+          width: 24px;
+          height: 24px;
+        }
+
+        .card-metric {
+          font-size: 32px;
+          font-weight: bold;
+          margin-bottom: 8px;
+        }
+
+        .card-footer {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          font-weight: 600;
+          gap: 4px;
+        }
+
+        .card-footer.positive {
+          color: var(--positive-color);
+        }
+
+        .card-footer.negative {
+          color: var(--negative-color);
+        }
+
+        /* Animated Cards - New Theme */
+        .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          padding: 20px 0;
+          gap: 0;
+        }
+
+        .container .box {
+          position: relative;
+          width: 280px;
+          height: 320px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 20px 15px;
+          transition: 0.5s;
+        }
+
+        .container .box::before {
+          content: ' ';
+          position: absolute;
+          top: 0;
+          left: 50px;
+          width: 50%;
+          height: 100%;
+          text-decoration: none;
+          background: #fff;
+          border-radius: 8px;
+          transform: skewX(15deg);
+          transition: 0.5s;
+        }
+
+        .container .box::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50px;
+          width: 50%;
+          height: 100%;
+          background: #fff;
+          border-radius: 8px;
+          transform: skewX(15deg);
+          transition: 0.5s;
+          filter: blur(30px);
+        }
+
+        .container .box:hover:before,
+        .container .box:hover:after {
+          transform: skewX(0deg);
+          left: 20px;
+          width: calc(100% - 90px);
+        }
+
+        .container .box:nth-child(1):before,
+        .container .box:nth-child(1):after {
+          background: linear-gradient(315deg, #ffbc00, #ff0058);
+        }
+
+        .container .box:nth-child(2):before,
+        .container .box:nth-child(2):after {
+          background: linear-gradient(315deg, #03a9f4, #ff0058);
+        }
+
+        .container .box:nth-child(3):before,
+        .container .box:nth-child(3):after {
+          background: linear-gradient(315deg, #4dff03, #00d0ff);
+        }
+
+        .container .box span {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 5;
+          pointer-events: none;
+        }
+
+        .container .box span::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          transition: 0.1s;
+          animation: animate 2s ease-in-out infinite;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .container .box:hover span::before {
+          top: -50px;
+          left: 50px;
+          width: 100px;
+          height: 100px;
+          opacity: 1;
+        }
+
+        .container .box span::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          opacity: 0;
+          transition: 0.5s;
+          animation: animate 2s ease-in-out infinite;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          animation-delay: -1s;
+        }
+
+        .container .box:hover span:after {
+          bottom: -50px;
+          right: 50px;
+          width: 100px;
+          height: 100px;
+          opacity: 1;
+        }
+
+        @keyframes animate {
+          0%, 100% {
+            transform: translateY(10px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        .container .box .content {
+          position: relative;
+          left: 0;
+          padding: 16px 24px;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          z-index: 1;
+          transform: 0.5s;
+          color: #fff;
+        }
+
+        .container .box:hover .content {
+          left: -20px;
+          padding: 40px 24px;
+        }
+
+        .container .box .content h2 {
+          font-size: 1.5em;
+          color: #fff;
+          margin-bottom: 8px;
+          font-weight: 200;
+        }
+
+        .container .box .content p {
+          font-size: 0.9em;
+          margin-bottom: 8px;
+          line-height: 1.3em;
+          font-weight: 200;
+        }
+
+        .container .box .content a {
+          display: inline-block;
+          font-size: 0.9em;
+          color: #111;
+          background: #fff;
+          padding: 8px 12px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-weight: 700;
+          margin-top: 5px;
+        }
+
+        .container .box .content a:hover {
+          background: #ffcf4d;
+          border: 1px solid rgba(255, 0, 88, 0.4);
+          box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+          .dashboard-card {
+            max-width: calc(50% - 10px);
+          }
+        }
+
+        @media (max-width: 600px) {
+          .dashboard-card {
+            max-width: 100%;
+          }
+        }
+
+
+
+        /* Tab Navigation Bar Styling with Hover Underline Effects */
+        .tab-navbar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 15px 0;
+          margin-bottom: 20px;
+          background-color: rgba(255, 255, 255, 0.02);
+          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-nav-list {
+          display: flex;
+          gap: 30px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .tab-nav-item {
+          font-size: 1rem;
+          color: #cccccc;
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          text-decoration: none;
+          font-family: Arial, sans-serif;
+          font-weight: 200;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          transition: color 0.3s ease;
+        }
+
+        .tab-nav-item:hover {
+          color: #ffffff;
+        }
+
+        .tab-nav-item.active {
+          color: #ffffff;
+        }
+
+        .tab-nav-item::after,
+        .tab-nav-item::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(to right, #ff0000, #00ffff);
+          bottom: -3px;
+          left: 0;
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 0.3s ease-out;
+        }
+
+        .tab-nav-item::before {
+          top: -3px;
+          transform-origin: left;
+        }
+
+        .tab-nav-item:hover::after,
+        .tab-nav-item:hover::before,
+        .tab-nav-item.active::after,
+        .tab-nav-item.active::before {
+          transform: scaleX(1);
+        }
+
+        /* Style Streamlit tabs to look like underline theme */
+        [data-testid*="stTabs"] {
+          background: transparent;
+          border: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        [data-testid*="stTabs"] > div {
+          background: transparent;
+          border: none;
+        }
+        
+        [data-testid*="stTabs"] button {
+          background: transparent;
+          border: none;
+          color: var(--text-primary);
+          font-size: 1rem;
+          font-weight: 500;
+          padding: 1rem 1.5rem;
+          margin: 0 0.5rem;
+          border-radius: 0;
+          position: relative;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        
+        [data-testid*="stTabs"] button:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: var(--accent-color);
+        }
+        
+        [data-testid*="stTabs"] button[aria-selected="true"] {
+          background: transparent;
+          color: var(--accent-color);
+          font-weight: 600;
+        }
+        
+        [data-testid*="stTabs"] button::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+          transform: scaleX(0);
+          transition: transform 0.3s ease;
+        }
+        
+        [data-testid*="stTabs"] button:hover::after {
+          transform: scaleX(1);
+        }
+        
+        [data-testid*="stTabs"] button[aria-selected="true"]::after {
+          transform: scaleX(1);
+        }
+
+        @media (max-width: 600px) {
+          .navbar {
+            padding: 20px;
+          }
+
+          .nav-list {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .nav-item {
+            width: 60px;
+            height: 60px;
+          }
+
+          .nav-item:hover {
+            width: 180px;
+          }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="card-container">
+        <div class="dashboard-card">
+            <div class="card-header">
+                <span class="card-title">Views</span>
+                <div class="icon-placeholder"></div>
+            </div>
+            <div class="card-metric">721K</div>
+            <div class="card-footer positive">
+                <span class="change-icon">▲</span>
+                <span class="change-percentage">+11.01%</span>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-header">
+                <span class="card-title">Visits</span>
+                <div class="icon-placeholder"></div>
+            </div>
+            <div class="card-metric">367K</div>
+            <div class="card-footer negative">
+                <span class="change-icon">▼</span>
+                <span class="change-percentage">-0.03%</span>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="card-header">
+                <span class="card-title">New Users</span>
+                <div class="icon-placeholder"></div>
+            </div>
+            <div class="card-metric">1,156</div>
+            <div class="card-footer positive">
+                <span class="change-icon">▲</span>
+                <span class="change-percentage">+15.03%</span>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; margin: 40px 0; color: var(--text-primary);">Animated Cards Demo</h2>
+    <div class="container">
+        <div class="box">
+            <span></span>
+            <div class="content">
+                <h2>Card One</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="box">
+            <span></span>
+            <div class="content">
+                <h2>Card Two</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="box">
+            <span></span>
+            <div class="content">
+                <h2>Card Three</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; margin: 40px 0; color: var(--text-primary);">Tab Navigation Demo</h2>
+    <div class="tab-navbar">
+        <ul class="tab-nav-list">
+            <li class="tab-nav-item active">📈 Strategic Analysis</li>
+            <li class="tab-nav-item">🎯 Sentiment Intelligence</li>
+            <li class="tab-nav-item">📊 Source Comparison</li>
+            <li class="tab-nav-item">🕒 Time Trends</li>
+            <li class="tab-nav-item">📋 Data Explorer</li>
+        </ul>
+    </div>
+</body>
+</html>
