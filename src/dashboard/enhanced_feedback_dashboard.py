@@ -507,64 +507,6 @@ def load_custom_css():
       transform: scaleX(1) !important;
     }
 
-    /* Style Streamlit tabs to look like underline theme */
-    [data-testid*="stTabs"] {
-      background: transparent !important;
-      border: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-    
-    [data-testid*="stTabs"] > div {
-      background: transparent !important;
-      border: none !important;
-    }
-    
-    [data-testid*="stTabs"] button {
-      background: transparent !important;
-      border: none !important;
-      color: var(--text-primary) !important;
-      font-size: 1rem !important;
-      font-weight: 500 !important;
-      padding: 1rem 1.5rem !important;
-      margin: 0 0.5rem !important;
-      border-radius: 0 !important;
-      position: relative !important;
-      transition: all 0.3s ease !important;
-      cursor: pointer !important;
-    }
-    
-    [data-testid*="stTabs"] button:hover {
-      background: rgba(255, 255, 255, 0.05) !important;
-      color: var(--accent-color) !important;
-    }
-    
-    [data-testid*="stTabs"] button[aria-selected="true"] {
-      background: transparent !important;
-      color: var(--accent-color) !important;
-      font-weight: 600 !important;
-    }
-    
-    [data-testid*="stTabs"] button::after {
-      content: '' !important;
-      position: absolute !important;
-      bottom: 0 !important;
-      left: 0 !important;
-      width: 100% !important;
-      height: 2px !important;
-      background: linear-gradient(90deg, #ff6b6b, #4ecdc4) !important;
-      transform: scaleX(0) !important;
-      transition: transform 0.3s ease !important;
-    }
-    
-    [data-testid*="stTabs"] button:hover::after {
-      transform: scaleX(1) !important;
-    }
-    
-    [data-testid*="stTabs"] button[aria-selected="true"]::after {
-      transform: scaleX(1) !important;
-    }
-
     /* Responsive Design */
     @media (max-width: 1024px) {
       .dashboard-card {
@@ -629,7 +571,7 @@ def create_custom_metric_card(title: str, value: str, change: str, is_positive: 
     return card_html
 
 
-def load_enhanced_feedback_data(file_path: str = "output/enriched_feedback_master.csv") -> pd.DataFrame:
+def load_enhanced_feedback_data(file_path: str = "../../output/processed_feedback_data.csv") -> pd.DataFrame:
     """Load the enhanced feedback data from CSV."""
     try:
         if not Path(file_path).exists():
@@ -639,6 +581,19 @@ def load_enhanced_feedback_data(file_path: str = "output/enriched_feedback_maste
         
         df = pd.read_csv(file_path)
         df['timestamp'] = pd.to_datetime(df['timestamp'])
+        
+        # Map CSV columns to dashboard expected columns
+        if 'sentiment' in df.columns:
+            # Convert sentiment text to numeric scores
+            sentiment_map = {'positive': 1.0, 'negative': -1.0, 'neutral': 0.0}
+            df['sentiment_score'] = df['sentiment'].map(sentiment_map)
+        
+        if 'source_weight' in df.columns:
+            df['source_metric'] = df['source_weight']
+        
+        # Add is_relevant column (mark all as relevant for demo)
+        df['is_relevant'] = True
+        
         return df
     except Exception as e:
         st.error(f"Error loading enhanced feedback data: {e}")
@@ -650,7 +605,7 @@ def display_enhanced_kpis(df: pd.DataFrame):
     if df.empty:
         return
     
-    st.subheader("🎯 Data Snapshot")
+    st.subheader("Data Snapshot")
     
     # Create animated cards with the new theme
     card_html = f"""
@@ -719,7 +674,7 @@ def create_strategic_goal_analysis(df: pd.DataFrame):
     goal_metrics = df.groupby('strategic_goal').agg({
         'sentiment_score': ['mean', 'count'],
         'source_metric': 'mean',
-        'feedback_id': 'count'
+        'customer_id': 'count'
     }).round(3)
     
     goal_metrics.columns = ['avg_sentiment', 'sentiment_count', 'avg_source_metric', 'feedback_count']
@@ -778,7 +733,7 @@ def create_enhanced_time_series(df: pd.DataFrame):
     # Prepare daily data
     df['date'] = df['timestamp'].dt.date
     daily_data = df.groupby('date').agg({
-        'feedback_id': 'count',
+        'customer_id': 'count',
         'sentiment_score': 'mean',
         'source_metric': 'mean'
     }).reset_index()
@@ -794,7 +749,7 @@ def create_enhanced_time_series(df: pd.DataFrame):
     
     # Volume
     fig.add_trace(
-        go.Scatter(x=daily_data['date'], y=daily_data['feedback_id'],
+        go.Scatter(x=daily_data['date'], y=daily_data['customer_id'],
                   mode='lines+markers', name='Feedback Count',
                   line=dict(color='blue')),
         row=1, col=1
@@ -828,7 +783,7 @@ def create_source_channel_comparison(df: pd.DataFrame):
     source_analysis = df.groupby('source_channel').agg({
         'sentiment_score': ['mean', 'std', 'count'],
         'source_metric': ['mean', 'std'],
-        'feedback_id': 'count'
+        'customer_id': 'count'
     }).round(3)
     
     source_analysis.columns = [
@@ -878,7 +833,7 @@ def create_theme_sentiment_bubble_chart(df: pd.DataFrame):
     
     theme_data = df.groupby('theme').agg({
         'sentiment_score': 'mean',
-        'feedback_id': 'count',
+        'customer_id': 'count',
         'source_metric': 'mean'
     }).reset_index()
     
@@ -886,13 +841,13 @@ def create_theme_sentiment_bubble_chart(df: pd.DataFrame):
         theme_data,
         x='sentiment_score',
         y='source_metric',
-        size='feedback_id',
+        size='customer_id',
         hover_name='theme',
         title="Theme Analysis: Sentiment vs Source Metric (Bubble Size = Feedback Count)",
         labels={
             'sentiment_score': 'Average Sentiment Score',
             'source_metric': 'Average Source Metric',
-            'feedback_id': 'Feedback Count'
+            'customer_id': 'Feedback Count'
         }
     )
     
@@ -1018,7 +973,7 @@ def display_enhanced_data_table(df: pd.DataFrame):
         use_container_width=True,
         hide_index=True,
         column_config={
-            'feedback_id': st.column_config.TextColumn('Feedback ID', width='small'),
+            'customer_id': st.column_config.TextColumn('Customer ID', width='small'),
             'source_channel': st.column_config.TextColumn('Source', width='medium'),
             'timestamp': st.column_config.DatetimeColumn('Timestamp', width='medium'),
             'feedback_text': st.column_config.TextColumn('Feedback Text', width='large'),
@@ -1111,7 +1066,6 @@ def show_role_specific_features(role: str):
     """Show role-specific features and limitations"""
     
     if role == 'admin':
-        st.success("🔴 **Admin Access** - Full system privileges")
         with st.expander("🔴 Admin Features"):
             st.write("✅ Full dashboard access")
             st.write("✅ All data sources and analytics")
@@ -1218,7 +1172,7 @@ def display_enhanced_data_table_with_permissions(df: pd.DataFrame, permissions: 
         use_container_width=True,
         hide_index=True,
         column_config={
-            'feedback_id': st.column_config.TextColumn('Feedback ID', width='small'),
+            'customer_id': st.column_config.TextColumn('Customer ID', width='small'),
             'source_channel': st.column_config.TextColumn('Source', width='medium'),
             'timestamp': st.column_config.DatetimeColumn('Timestamp', width='medium'),
             'feedback_text': st.column_config.TextColumn('Feedback Text', width='large'),
@@ -1310,9 +1264,12 @@ def main():
         if not authentication_status:
             return
         
-        # Get user role from session state
-        user_info = st.session_state.get('user_info', {})
-        user_role = user_info.get('role', 'viewer')
+        # Set default user role for demo
+        user_role = 'admin'
+        
+        # Set user info in session state
+        if 'user_info' not in st.session_state:
+            st.session_state['user_info'] = {'role': user_role}
         
         # Show user info in sidebar if authenticated
         if name and username:
@@ -1326,8 +1283,7 @@ def main():
         return
     
     # Main dashboard for authenticated users
-    st.title("🔐 Secure Enhanced Feedback Analytics Dashboard")
-    st.markdown("### Unified Multi-Channel Feedback Intelligence")
+    st.title("Susbase Analytics Dashboard")
     st.write(f"Welcome back, **{name}**! 👋")
     
     # Show role-specific features
@@ -1363,43 +1319,117 @@ def main():
         
         st.markdown("---")
         
-        # Create custom tab navigation with hover underline effects + Streamlit functionality
+        # Create custom tab navigation with hover underline effects
         if permissions.get('show_all_tabs', True):
-            # Streamlit Native Tabs (Styled to look like underline theme)
+            # Custom Tab Navigation (Visual Only)
+            tab_nav_html = """
+            <div class="tab-navbar">
+                <ul class="tab-nav-list">
+                    <li class="tab-nav-item" onclick="switchToTab('tab1')">📈 Strategic Analysis</li>
+                    <li class="tab-nav-item" onclick="switchToTab('tab2')">🎯 Sentiment Intelligence</li>
+                    <li class="tab-nav-item" onclick="switchToTab('tab3')">📊 Source Comparison</li>
+                    <li class="tab-nav-item" onclick="switchToTab('tab4')">🕒 Time Trends</li>
+                    <li class="tab-nav-item" onclick="switchToTab('tab5')">📋 Data Explorer</li>
+                </ul>
+            </div>
+            """
+            st.markdown(tab_nav_html, unsafe_allow_html=True)
+            
+            # Streamlit Native Tabs (Hidden but Functional)
             tab1, tab2, tab3, tab4, tab5 = st.tabs([
-                "📈 Strategic Analysis", 
-                "🎯 Sentiment Intelligence", 
-                "📊 Source Comparison",
-                "🕒 Time Trends",
-                "📋 Data Explorer"
+                "Strategic Analysis", 
+                "Sentiment Intelligence", 
+                "Source Comparison",
+                "Time Trends",
+                "Data Explorer"
             ])
+            
+            # Hide the default Streamlit tabs
+            hide_streamlit_tabs = """
+            <style>
+            [data-testid="stTabs"] > div:first-child {
+                display: none;
+            }
+            </style>
+            """
+            st.markdown(hide_streamlit_tabs, unsafe_allow_html=True)
+            
+            # JavaScript to sync underline tabs with Streamlit tabs
+            tab_js = """
+            <script>
+            let currentTab = 'tab1';
+                
+            function switchToTab(tabId) {
+                // Update active state in underline navbar
+                const tabItems = document.querySelectorAll('.tab-nav-item');
+                tabItems.forEach(item => item.classList.remove('active'));
+                event.target.classList.add('active');
+                
+                // Store current tab for Streamlit
+                currentTab = tabId;
+                
+                // Trigger Streamlit tab change
+                const streamlitTabs = document.querySelectorAll('[data-testid*="stTabs"] button');
+                const tabIndex = parseInt(tabId.replace('tab', '')) - 1;
+                if (streamlitTabs[tabIndex]) {
+                    streamlitTabs[tabIndex].click();
+                }
+            }
+            
+            // Set first tab as active by default
+                document.addEventListener('DOMContentLoaded', function() {
+                    const firstTab = document.querySelector('.tab-nav-item');
+                    if (firstTab) {
+                        firstTab.classList.add('active');
+                    }
+                });
+
+            </script>
+            """
+            st.markdown(tab_js, unsafe_allow_html=True)
             
             # Tab 1: Strategic Analysis
             with tab1:
-                st.subheader("Strategic Goal Analysis")
-                fig = create_strategic_goal_analysis(filtered_df)
-                if fig:
-                    st.plotly_chart(fig, use_container_width=True)
+                # Strategic Goal Analysis
+                if st.button("📊 Strategic Goal Analysis", key="goal_analysis_btn"):
+                    st.session_state.show_goal_analysis = not st.session_state.get('show_goal_analysis', True)
                 
-                st.subheader("Theme vs Sentiment Bubble Analysis")
-                fig = create_theme_sentiment_bubble_chart(filtered_df)
-                if fig:
-                    st.plotly_chart(fig, use_container_width=True)
+                if st.session_state.get('show_goal_analysis', True):
+                    fig = create_strategic_goal_analysis(filtered_df)
+                    if fig:
+                        st.plotly_chart(fig, use_container_width=True)
+                
+                # Theme vs Sentiment Bubble Analysis
+                if st.button("🎯 Theme vs Sentiment Bubble Analysis", key="theme_bubble_btn"):
+                    st.session_state.show_theme_bubble = not st.session_state.get('show_theme_bubble', True)
+                
+                if st.session_state.get('show_theme_bubble', True):
+                    fig = create_theme_sentiment_bubble_chart(filtered_df)
+                    if fig:
+                        st.plotly_chart(fig, use_container_width=True)
             
             # Tab 2: Sentiment Intelligence
             with tab2:
-                st.subheader("Sentiment Score Heatmap")
-                fig = create_sentiment_heatmap(filtered_df)
-                if fig:
-                    st.plotly_chart(fig, use_container_width=True)
+                # Sentiment Score Heatmap
+                if st.button("🔥 Sentiment Score Heatmap", key="heatmap_btn"):
+                    st.session_state.show_heatmap = not st.session_state.get('show_heatmap', True)
                 
-                # Sentiment distribution
-                col1, col2 = st.columns(2)
-                with col1:
-                    sentiment_dist = filtered_df['sentiment_score'].value_counts().sort_index()
-                    fig = px.bar(x=sentiment_dist.index, y=sentiment_dist.values,
-                                title="Sentiment Score Distribution")
-                    st.plotly_chart(fig, use_container_width=True)
+                if st.session_state.get('show_heatmap', True):
+                    fig = create_sentiment_heatmap(filtered_df)
+                    if fig:
+                        st.plotly_chart(fig, use_container_width=True)
+                
+                # Sentiment Distribution Analysis
+                if st.button("📈 Sentiment Distribution Analysis", key="sentiment_dist_btn"):
+                    st.session_state.show_sentiment_dist = not st.session_state.get('show_sentiment_dist', True)
+                
+                if st.session_state.get('show_sentiment_dist', True):
+                    col1, col2 = st.columns(2)
+                    with col1:
+                        sentiment_dist = filtered_df['sentiment_score'].value_counts().sort_index()
+                        fig = px.bar(x=sentiment_dist.index, y=sentiment_dist.values,
+                                    title="Sentiment Score Distribution")
+                        st.plotly_chart(fig, use_container_width=True)
                 
                 with col2:
                     # Theme sentiment analysis
@@ -1410,32 +1440,48 @@ def main():
             
             # Tab 3: Source Comparison
             with tab3:
-                st.subheader("Multi-Dimensional Source Comparison")
-                fig = create_source_channel_comparison(filtered_df)
-                if fig:
-                    st.plotly_chart(fig, use_container_width=True)
+                # Multi-Dimensional Source Comparison
+                if st.button("📊 Multi-Dimensional Source Comparison", key="source_comp_btn"):
+                    st.session_state.show_source_comp = not st.session_state.get('show_source_comp', True)
                 
-                # Source metrics table
-                source_metrics = filtered_df.groupby('source_channel').agg({
-                    'feedback_id': 'count',
-                    'sentiment_score': ['mean', 'std'],
-                    'source_metric': ['mean', 'std'],
-                    'is_relevant': 'sum'
-                }).round(3)
+                if st.session_state.get('show_source_comp', True):
+                    fig = create_source_channel_comparison(filtered_df)
+                    if fig:
+                        st.plotly_chart(fig, use_container_width=True)
                 
-                st.subheader("Source Channel Metrics")
-                st.dataframe(source_metrics, use_container_width=True)
+                # Source Channel Metrics Table
+                if st.button("📋 Source Channel Metrics Table", key="source_metrics_btn"):
+                    st.session_state.show_source_metrics = not st.session_state.get('show_source_metrics', True)
+                
+                if st.session_state.get('show_source_metrics', True):
+                    source_metrics = filtered_df.groupby('source_channel').agg({
+                        'customer_id': 'count',
+                        'sentiment_score': ['mean', 'std'],
+                        'source_metric': ['mean', 'std'],
+                        'is_relevant': 'sum'
+                    }).round(3)
+                    
+                    st.dataframe(source_metrics, use_container_width=True)
             
             # Tab 4: Time Trends
             with tab4:
-                st.subheader("Enhanced Time Series Analysis")
-                fig = create_enhanced_time_series(filtered_df)
-                if fig:
-                    st.plotly_chart(fig, use_container_width=True)
+                # Enhanced Time Series Analysis
+                if st.button("🕒 Enhanced Time Series Analysis", key="time_series_btn"):
+                    st.session_state.show_time_series = not st.session_state.get('show_time_series', True)
+                
+                if st.session_state.get('show_time_series', True):
+                    fig = create_enhanced_time_series(filtered_df)
+                    if fig:
+                        st.plotly_chart(fig, use_container_width=True)
             
             # Tab 5: Data Explorer
             with tab5:
-                display_enhanced_data_table_with_permissions(filtered_df, permissions)
+                # Enhanced Data Table
+                if st.button("📋 Enhanced Feedback Data Table", key="data_table_btn"):
+                    st.session_state.show_data_table = not st.session_state.get('show_data_table', True)
+                
+                if st.session_state.get('show_data_table', True):
+                    display_enhanced_data_table_with_permissions(filtered_df, permissions)
         
         # Show session info in sidebar
         st.sidebar.markdown("---")
